@@ -1,0 +1,66 @@
+@import '../../../../../styles/const.scss';
+@import '../../../../../styles/mixins.scss';
+
+@include mobile {
+  .am {
+    .menu-backdrop {
+      position: fixed;
+      top: 100px;
+      left: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1101; // 1 more than Appbar    
+  
+      .menu-list-paper {
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 40px;
+        padding: 10px;
+        border: solid 0.5px $white;
+  
+        .menu-item {
+          margin: 0 8px;
+          background-color: rgba(0, 0, 0, 0.8);
+          color: $white;
+          border-radius: 35px;
+  
+          .menu-text {
+            opacity: 0;
+            width: 0;
+            font-size: 1rem;
+          }
+
+          &.selected-button {
+            background-color: black;
+            color: white;
+            padding: 12px;
+
+            .menu-text {
+              width: auto;
+              padding-left: 5px;
+              animation: .5s slide-right 0s forwards;
+
+              @keyframes slide-right {
+                from {
+                  transform:translateX(-100%);
+                  opacity: 0;
+                }
+                to {
+                  transform:translateX(0%);
+                  opacity: 1;
+                }
+              }
+            }
+          }
+  
+          .menu-icon {
+            path {
+              fill: url($gradient-id);
+            }  
+          }    
+        }
+      }
+    }  
+  }
+}

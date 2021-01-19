@@ -1,0 +1,104 @@
+@import '../../../styles/const.scss';
+@import '../../../styles/mixins.scss';
+
+.am {
+  section.wrapper {
+    width: 100%;
+    height: 100%;
+    scroll-behavior: smooth;
+
+    .selectors {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+  
+      .selector {
+        border: 1px solid $black;
+        background: $white;
+        width: 14px;
+        height: 14px;
+        border-radius: 50%;
+        margin: 5px 0;
+        opacity: 0.6;
+        cursor: pointer;
+
+        &:hover, &.active {
+          background: $gradient;
+          border: none;
+          opacity: 0.9;
+          width: 16px;
+          height: 16px;
+        }
+
+        &.active {
+          animation-name: zoom;
+          animation-duration: 0.3s;
+          animation-timing-function: ease-out;
+
+          @keyframes zoom {
+            0%    { transform: scale(0) }
+            100%  { transform: scale(1) } 
+          }
+        }
+      }
+    }
+
+    aside.panel {
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+
+      .screen {
+        // box-shadow: 5px 0 25px 0 rgba(0, 0, 0, 0.3);
+        height: 100vh;
+        // height: calc(100vh - 5px);
+      }
+
+      .counter {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        padding: 20px 10px;
+        background-color: $white;
+
+        .current-slide {
+          font-size: 50px;
+          font-weight: 800;
+          font-family: Montserrat-Bold;
+        }
+
+        .total-slides {
+          color: $gray;
+          font-size: 30px;
+          font-family: Montserrat-SemiBold;
+        }
+      }
+    }  
+  }
+
+  @include mobile {
+    section.wrapper {
+      height: auto;
+      aside.panel {
+
+        .screen {
+          height: calc(100vh - 80px);
+        }
+
+        .counter {
+          padding: 5px;
+          & .current-slide, & .total-slides {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+}

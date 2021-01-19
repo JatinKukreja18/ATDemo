@@ -1,0 +1,79 @@
+@import './const.scss';
+@import './mixins.scss';
+@import './carousel.scss';
+
+@font-face {
+  font-family: ProximaNova-Regular;
+  font-weight: normal;
+  font-style: normal;
+  src: url(../assets/ProximaNova-Regular.otf);
+}
+
+@font-face {
+  font-family: ProximaNova-Sbold;
+  font-weight: normal;
+  font-style: normal;
+  src: url(../assets/ProximaNova-Sbold.otf);
+}
+
+@font-face {
+  font-family: ProximaNova-Bold;
+  font-weight: bold;
+  font-style: normal;
+  src: url(../assets/ProximaNova-Bold.otf);
+}
+
+@font-face {
+  font-family: Montserrat-Bold;
+  font-weight: 800;
+  font-style: normal;
+  src: url(../assets/Montserrat-Bold.otf);
+}
+
+@font-face {
+  font-family: Montserrat-SemiBold;
+  font-weight: 600;
+  font-style: normal;
+  src: url(../assets/Montserrat-SemiBold.otf);
+}
+
+html {
+  height: 100%;
+  width: 100%;
+}
+
+body.am {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background: $white;
+  color: $black;
+  font-weight: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: ProximaNova-Bold;
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.am-icon {
+  path {
+    fill: url($gradient-id);
+  }
+}

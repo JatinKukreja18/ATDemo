@@ -1,0 +1,66 @@
+@import '../../../styles/const.scss';
+@import '../../../styles/mixins.scss';
+
+.am {
+  .sm-icon {
+    margin: 0 5px;
+    padding: 6px;
+  }
+
+  .social-media-text {
+    font-size: 1rem;
+    width: 124px;
+    display: flex;
+    align-items: center;
+    &:after { 
+      content: ""; 
+      width: 40px;
+      height: 2px;
+      left: 7px;
+      top: 3px;
+      position: relative;
+      border-radius: 10px;
+      display: block;
+      background: #5f5f5f;
+    } 
+  }
+
+  .facebook-icon-button, .facebook-icon-button:active {
+    background-color: $facebook;
+  }
+
+  .facebook-icon-button:hover {
+    background-color: $custom-green;
+  }
+
+  .linkedin-icon-button, .linkedin-icon-button:active {
+    background-color: $linkedIn;
+  }
+
+  .linkedin-icon-button:hover {
+    background-color: $custom-green;
+  }
+
+  .twitter-icon-button, .twitter-icon-button:active {
+    background-color: $twitter;
+  }
+
+  .twitter-icon-button:hover:hover {
+    background-color: $custom-green;
+  }
+
+  .icon {
+    color: $white;
+  }
+
+  @include mobile {
+    // .social-media-text {
+    //   font-size: 0.75rem;
+    // }
+    .social-media .sub-section .text-section {
+      & .text {
+        display: flex;
+      }
+    }
+  }
+}

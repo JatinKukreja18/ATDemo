@@ -1,0 +1,44 @@
+@import '../../../styles/const.scss';
+@import '../../../styles/mixins.scss';
+
+$card-height: 350px;
+
+.am {
+  .am-next-card {
+    display: block;
+    width: 30%;
+    min-height: $card-height;
+    margin: auto 0;
+    color: $white;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+
+    .am-next-card-content {
+      min-height: $card-height;
+      background-color: rgba(0, 0, 0, 0.7);
+      -webkit-tap-highlight-color: transparent;
+
+      .am-next-card-header {
+        // font-size: xx-large;
+        line-height: 1.2;
+        cursor: pointer;
+        color: $white;
+      }  
+    }
+
+  }
+
+  @include tablet {
+    .am-next-card {
+      display: none;
+      // width: 100%;
+    }
+  }
+
+  @include mobile {
+    .am-next-card {
+      display: none;
+      // width: 100%;
+    }
+  }
+}

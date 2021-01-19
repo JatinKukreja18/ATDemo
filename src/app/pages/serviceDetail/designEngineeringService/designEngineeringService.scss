@@ -1,0 +1,56 @@
+@import '../../../../styles/const.scss';
+
+.am {
+
+  .scroll-top-button {
+    position: fixed;
+    bottom: 5%;
+    right: 5%;
+    background: $gradient;
+    color: white;
+  }
+
+  .subItem-container {
+
+    .des-title {
+      background: $gradient;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 3em;
+      font-family: ProximaNova-Bold;
+      margin-bottom: .5rem;
+    }
+
+    h3 {
+      font-size: 2em;
+      font-family: ProximaNova-Bold;
+      margin-bottom: .5rem;
+    }
+
+    .des-text-container {
+      margin-bottom: 1rem;
+      .des-text {
+        display: flex;
+        font-size: 1.25rem;
+
+        .list-icon-container {  
+          .list-icon {
+            width: 1.5rem;
+            margin-right: 10px;
+          }
+        }
+  
+        .highlighted-text {
+          font-size: 1.25rem;
+          font-weight: bold;
+          color: $custom-green;
+          font-family: ProximaNova-Sbold;
+          // background: $gradient;
+          // -webkit-background-clip: text;
+          // -webkit-text-fill-color: transparent;
+        }  
+      }
+    }
+  }
+}

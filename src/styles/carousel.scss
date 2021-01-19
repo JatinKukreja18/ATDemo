@@ -1,0 +1,97 @@
+@import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+@import './const.scss';
+
+.am{
+  .carousel-root {
+    .carousel-slider {
+      .prev-btn-container, .next-btn-container {
+        position: absolute;
+        bottom: 20px;
+      }
+
+      .prev-btn-container {
+        width: 49%;
+        text-align: end;
+      }
+
+      .next-btn-container {
+        margin-left: 51%;
+      }
+
+      .am-carousel-arrow-buttons {
+        color: white;
+        background: $gradient;
+        border-radius: 25%;
+        transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+        &:disabled {
+          color: $gray;
+          background: $light-gray;
+          // border: solid 1px $gray;
+          box-shadow: none;
+          cursor:not-allowed;
+        }
+      }
+
+
+      .slider-wrapper {
+        .slider {
+          .slide {
+            background: none;
+            text-align: inherit;
+            opacity: 0.75;
+            transform: scale(0.9) ;
+            transition: all .5s ease-in-out;
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+            pointer-events: none;
+
+            .am-card {
+              .am-card-content {
+                .list {
+                  display: none;
+                }
+              }
+            }
+
+            &.selected {
+              transform: scale(1);
+              opacity: 1;
+              -webkit-user-drag: auto;
+              pointer-events: visible;
+              .am-card {
+                .am-card-content {
+                  .list {
+                    display: block;
+                  }
+                }
+              }
+  
+            }
+          }
+        }
+      }  
+    }
+  }
+}
+
+@include mobile {
+  .am{
+    .carousel-root {
+      .carousel-slider {
+        height: 600px;
+      }
+    }
+  }
+}
+
+@include tablet {
+  .am{
+    .carousel-root {
+      .carousel-slider {
+        height: 600px;
+      }
+    }
+  }
+}

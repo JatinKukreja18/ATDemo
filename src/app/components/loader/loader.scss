@@ -1,0 +1,55 @@
+@import '../../../styles/const.scss';
+
+.am {
+
+  .loader-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    background-image: url('../../../assets/compressed/loader-image.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+  }
+
+  .loader-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    opacity: 0.5;
+    background-color: black;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    // width: 0;
+    transition: all 3s ease-in-out;
+		transform: translateX(0%);
+    width: 100vw;
+    &.active{
+		transform: translateX(100%)
+      
+    }
+    
+    
+    .loading-text {
+      color: white;
+      word-wrap: break-word;
+    }
+
+  }
+  .percent {
+    width: auto;
+    z-index: 1;
+    margin: 0;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%);
+    position: absolute;
+    color: white;
+  }
+}

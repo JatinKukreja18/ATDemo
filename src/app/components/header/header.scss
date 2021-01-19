@@ -1,0 +1,88 @@
+@import '../../../styles/const.scss';
+@import '../../../styles/mixins.scss';
+
+.am {
+  .am-header{
+    background: url('../../../assets/compressed/manufacturing2.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top;
+    left: $menu-width;
+    align-items: center;
+    width: auto;
+    text-align: center;
+    transition: box-shadow 0.6s ease;
+    transition: all 0.4s ease-in-out;
+    padding: 15px 0 20px;
+
+    .overlay-header{
+      position: absolute;
+      width: 100%;
+      z-index: 1;
+      background: $gradient;
+      height: 100%;
+      opacity: 0.8;
+      top: 0;
+    }
+
+    .title-container {
+      margin: 30px 0;
+      z-index: 2;
+
+      .title {
+        transition: all .3s ease;
+        font-size: 3em;
+        font-family: ProximaNova-Bold;
+        margin-bottom: .5rem;
+      }
+
+      .breadcrumb-container {
+        height: auto; 
+        transition: max-height 0.15s ease-out;
+        opacity: 1;
+        transition: height 0ms 0ms, opacity 600ms 0ms;
+        & ol {
+          margin-top: 10px;
+          justify-content: center;
+        }
+        .breadcrumb {
+          color: $white;
+        }
+      }
+
+
+    }
+
+    &.scroll-triggered {
+      padding: 0;
+      .title-container {
+        margin: 20px 0px;
+        .breadcrumb-container {
+          height: 0;
+          transition: max-height 0.25s ease-in;
+          opacity: 0;
+          transition: height 0ms 400ms, opacity 400ms 0ms;
+        }
+      }
+    }
+  }
+
+  @include mobile {
+    .am-header{
+      left: 0;
+      top: 6.8%;
+
+      .title-container {  
+        .title {
+          font-size: 1.5rem;
+        }
+      }
+
+      &.scroll-triggered {
+        left: 0;
+        right: 0;
+        height: auto;
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import '../../../../styles/const.scss';
+
+.am {
+  .subItem-container {
+
+    .clean-room-control-text {
+      font-size: 1rem;
+      padding-bottom: 30%;
+
+      .list-icon-container {
+        .list-icon {
+          width: 1.5rem;
+          margin-right: 10px;
+        }
+      }
+
+      .highlighted-text {
+        font-size: 1.25rem;
+        font-weight: bold;
+        color: $custom-green;
+        font-family: ProximaNova-Sbold;
+      }
+
+      .subtitle {
+        font-weight: bold;
+        font-size: 1.20rem;
+      }
+    }
+  }
+}

@@ -1,0 +1,63 @@
+@import '../../../../styles/const.scss';
+
+.am {
+  .subItem-container {
+
+    .dp-title {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+
+      .list-icon-container {
+        .list-icon {
+          width: 1.5rem;
+          margin-right: 10px;
+        }
+      }
+
+      .dp-title-text {
+        .highlighted-text {
+          font-size: 1.25rem;
+          font-weight: bold;
+          color: $custom-green;
+          font-family: ProximaNova-Sbold;
+        }
+      }
+    }
+
+    .dp-table-container {
+      padding: 2rem 0;
+
+      .dp-table {
+        border: solid 1px $light-gray;
+        
+        .table-head {
+          font-weight: 800;
+          font-size: 1rem;
+          padding: 16px;
+          border-bottom: 1px solid rgba(224, 224, 224, 1);
+          line-height: 1.5rem;
+        }
+
+        .table-body {
+
+          .table-row {
+            .table-cell {
+              font-size: 1rem;
+              padding: 16px;
+              border-bottom: 1px solid rgba(224, 224, 224, 1);
+              line-height: 1.43;
+            }
+            
+            &:last-child {
+              .table-cell {
+                border-bottom: none;
+              }
+            }  
+          }  
+        }
+
+      }
+    }
+  }
+}

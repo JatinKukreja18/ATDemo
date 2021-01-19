@@ -1,0 +1,46 @@
+@mixin mobile {
+  /* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+
+  @media (min-width: 320px) and (max-width: 767px) {
+    @content;
+  }
+}
+
+
+@mixin tablet {
+  /* 
+    ##Device = Tablets, Ipads
+    ##Screen = B/w 768px to 1024px
+  */
+
+  @media (min-width: 767px) and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin laptop {
+  /* 
+    ##Device = Laptops, Desktops
+    ##Screen = B/w 1025px to 1280px
+  */
+
+  @media (min-width: 1025px) and (max-width: 1280px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  /* 
+    ##Device = Desktops
+    ##Screen = 1281px to higher resolution desktops
+  */
+
+  @media (min-width: 1281px) {
+    @content;
+  }
+}
+
+

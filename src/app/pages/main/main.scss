@@ -1,0 +1,37 @@
+@import '../../../styles/const.scss';
+.am {
+  
+  .gradient-svg {
+    position: fixed;
+    margin-top: -1000px;
+    margin-left: -1000px;
+  }
+
+  .main-container {
+    height: 100%;
+    
+    .desktop-view {
+      height: 100%;
+    
+      .content {
+        height: 100%;
+        margin-left: $menu-width;
+      }
+    }
+  
+    .mobile-view {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: flex-start;
+      height: 100%;
+
+      .content {
+        height: 100%;
+        margin-top: 8px;
+        padding-top: 6px;
+      }
+    }
+  
+  }
+}

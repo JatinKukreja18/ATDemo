@@ -1,0 +1,370 @@
+@import '../../../styles/const.scss';
+@import '../../../styles/mixins.scss';
+// projects screen specific CSS will come here
+
+.am {
+  .projects-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 2rem;
+    padding-right: 0;
+
+    .first-section {
+      width: 40%;
+      margin: auto 0;
+
+      .projects-content {
+        width: 90%;
+        margin: auto;
+        padding: 20px 0;
+
+        .image-card{
+          height: 300px;
+          box-shadow: $box-shadow;
+          border-radius: 10px;
+  
+          .project-img {
+            height: 100%;
+          }  
+        }
+
+        .heading {
+          font-size: 3em;
+          font-family: ProximaNova-Bold;
+          margin-bottom: .5rem;
+        }
+
+        .text {
+          font-size: 1.25rem;
+        }
+      }
+    }
+
+    .second-section {
+      width: 60%;
+      margin: auto 0;
+      padding: 0 40px;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+
+      .carousel-item-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding-left: 500px;
+
+        .carousel-item {
+          margin: 0 4%;
+          transition: all .5s ease-in-out;
+
+          &.new {
+            pointer-events: none;
+            .am-card {
+              .am-card-content {
+                .list {
+                  display: none;
+                }
+              }
+            }
+          }
+  
+          &.right {
+            &.new {
+              transform: scale(0.8);
+              opacity: 0.8;
+            }
+    
+            &.active {
+              transform: scale(1);
+              opacity: 1;
+              z-index: 2;
+              animation: slide-in .5s ease-in-out;
+              margin-left: -500px;
+  
+              @keyframes slide-in {
+                0% {
+                  margin-left: 0;
+                }
+    
+                100% {
+                  margin-left: -300px;
+                }
+                
+              }
+            }
+    
+            &.hidden {
+              display: none;
+            }
+  
+            &.old {
+              margin-left: -500px;
+              animation: slide-out .5s ease-in-out;
+              z-index: 1;  
+              
+              @keyframes slide-out {
+                0% {
+                  z-index: 2;
+                }
+    
+                100% {
+                  z-index: 1;
+                }
+                
+              }
+            }
+          }
+
+          &.left {
+            &.new {
+              transform: scale(0.8);
+              opacity: 0.8;
+              animation: left-slide-out .5s ease-in-out;
+              
+              @keyframes left-slide-out {
+                0% {
+                  opacity: 1;
+                  transform: scale(1);
+                  margin-left: -500px;
+                }
+    
+                100% {
+                  opacity: 0.8;
+                  transform: scale(0.8);
+                  margin-left: 0;
+                }
+                
+              }
+            }
+    
+            &.active {
+              transform: scale(1);
+              opacity: 1;
+              z-index: 2;
+              margin-left: -500px;
+              animation: left-focus .5s ease-in-out;
+
+              @keyframes left-focus {
+                0% {
+                  opacity: 0;
+                }
+    
+                100% {
+                  opacity: 1;
+                }
+                
+              }
+            }
+    
+            &.hidden {
+              display: none;
+            }
+  
+            &.old {
+              margin-left: -500px;
+              opacity: 0;
+              animation: left-focus .5s ease-in-out;
+              
+              @keyframes left-focus {
+                0% {
+                  opacity: 0;
+                }
+    
+                100% {
+                  opacity: 1;
+                }
+                
+              }
+            }
+          }  
+
+        }
+
+        // .carousel-item:nth-child(n + 4) {
+        //   --y: calc(-50% + -30px);
+        //   transform: translateX(var(--y)) scale(0.75);
+        //   box-shadow: 0 0 1px 1px #00000003;
+        // }
+        // .carousel-item:nth-child(3) {
+        //   --y: calc(-50% + -15px);
+        //   transform: translateX(var(--y))  scale(0.75);
+        // }
+        // .carousel-item:nth-child(2) {
+        //   --y: calc(-50%);
+        //   transform: translateX(var(--y))  scale(0.75);
+        // }
+        // .carousel-item:nth-child(1) {
+        //   --y: calc(-50% + 15px);
+        //   transform: translateX(var(--y)) scale(1);
+        // }
+        
+      }
+
+      .arrow-buttons-container {
+        display: flex;
+        margin: 5% 0 0 10%;
+
+        .prev-btn-container {
+          margin-right: 5px;
+        }
+
+        .arrow-buttons {
+          color: white;
+          background: $gradient;
+          border-radius: 25%;
+          transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+          &:disabled {
+            color: $gray;
+            background: $light-gray;
+            // border: solid 1px $gray;
+            box-shadow: none;
+            cursor:not-allowed;
+          }
+        }
+      }
+    }
+  }
+
+  @include tablet {
+    .projects-container {
+      flex-direction: column;
+      height: auto;
+
+      .second-section {
+        .carousel-item-container {
+          padding: 5%;
+          padding-left: 0px;
+
+          .carousel-item {
+            &.right {    
+              &.new {
+                margin-left: 300px;
+              }
+  
+              &.active {
+                margin-left: 0px;
+    
+                @keyframes slide-in {
+                  0% {
+                    margin-left: 300px;
+                  }
+      
+                  100% {
+                    margin-left: 0px;
+                  }
+                  
+                }
+              }
+          
+              &.old {
+                margin-left: 0px;
+                z-index: 1;  
+                
+                @keyframes slide-out {
+                  0% {
+                    z-index: 2;
+                  }
+      
+                  100% {
+                    z-index: 1;
+                  }
+                  
+                }
+              }
+            }
+  
+            &.left {
+              &.new {
+                transform: scale(0.8);
+                opacity: 0.8;
+                animation: left-slide-out .5s ease-in-out;
+                margin-left: 300px;
+                
+                @keyframes left-slide-out {
+                  0% {
+                    opacity: 1;
+                    transform: scale(1);
+                    margin-left: 0px;
+                  }
+      
+                  100% {
+                    opacity: 0.8;
+                    transform: scale(0.8);
+                    margin-left: 300px;
+                  }
+                  
+                }
+              }
+      
+              &.active {
+                transform: scale(1);
+                opacity: 1;
+                z-index: 2;
+                margin-left: 0px;
+                animation: left-focus .5s ease-in-out;
+  
+                @keyframes left-focus {
+                  0% {
+                    opacity: 0;
+                  }
+      
+                  100% {
+                    opacity: 1;
+                  }
+                  
+                }
+              }
+    
+              &.old {
+                margin-left: 0px;
+                opacity: 0;
+                animation: left-focus .5s ease-in-out;
+                
+                @keyframes left-focus {
+                  0% {
+                    opacity: 0;
+                  }
+      
+                  100% {
+                    opacity: 1;
+                  }
+                  
+                }
+              }
+            }  
+  
+          }
+        }     
+      }
+      .first-section, .second-section {
+        width: 100%;
+      }
+    }
+  }
+  
+
+  @include mobile {
+    .projects-container {
+      flex-direction: column;
+      padding: 0;
+
+      .first-section {
+        width: 100%;
+      }
+
+      .second-section {
+        width: 100%;
+        overflow-x: inherit;
+        
+        .carousel-item-container {
+          padding: 5%;
+        }
+      }
+    }
+  }
+}

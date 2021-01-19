@@ -1,0 +1,73 @@
+
+@import '../../../styles/const.scss';
+@import '../../../styles/mixins.scss';
+.am {
+  .project-details-container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    scroll-behavior: smooth;
+
+    .details-content {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+
+      .back-button-container {
+        padding: 10px 0;
+        align-self: flex-end;
+        .MuiButton-label {
+          font-family: ProximaNova-Sbold;
+        }
+
+        .back-button {
+          border-radius: 20px;
+          box-shadow: $box-shadow;
+          padding: 5px 20px;
+          font-weight: bold;
+        }
+      }
+
+      .image-container {
+        padding: 10px 0;
+        align-self: center;
+
+        .details-image {
+          width: 75%;
+          display: block;
+          margin: 0 auto 30px;
+          border-radius: 10px;
+          box-shadow: $box-shadow;
+        }
+      }
+
+      .subItem-container {
+        padding: 1rem 0 0;
+        align-self: flex-start;
+        width: 100%;
+      }
+    }
+  }
+
+
+  @include mobile {
+    .project-details-container {
+      .details-content {
+        padding-top: 8%;
+
+        .image-container {
+          .details-image {
+            width: 90%;
+          }
+        }
+
+        .subItem-container .des-title {
+          font-size: 2.5em;
+        }
+
+      }
+    }
+  }
+}

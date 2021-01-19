@@ -1,0 +1,21 @@
+@import '../styles/const.scss';
+
+.am {
+  .am-active{
+    color: $custom-green;
+  }
+
+  .am-inactive{
+    &:hover {
+      color: $custom-green;
+    }
+  }
+
+  .am-details-dialog {
+    padding: 0;
+    scroll-behavior: smooth;
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+}

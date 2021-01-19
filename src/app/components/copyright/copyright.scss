@@ -1,0 +1,14 @@
+@import '../../../styles/mixins.scss';
+
+.am {
+  .copyright {
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+
+  @include mobile {
+    // .copyright {
+    //   font-size: 0.75rem;
+    // }
+  }
+}

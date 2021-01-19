@@ -1,0 +1,185 @@
+@import '../../../../styles/const.scss';
+@import '../../../../styles/mixins.scss';
+
+$img-height: 200px;
+
+.am {
+
+  .bg-gray {
+    background-color: $light-gray;
+  }
+  
+  .screen2-container {
+    .section {
+      display: flex;
+      flex-direction: row;
+      justify-content:space-between;
+      height: 50%;
+
+      &.social-media {
+        display: none;
+      }
+      .sub-section {
+        width: 50%;
+        padding: 4%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .text-section {
+          .heading {
+            font-size: 2.5em;
+            font-family: ProximaNova-Bold;
+            margin-bottom: 20px;
+            line-height: 1;
+          }
+  
+          .text {
+            font-size: 1.25rem;
+            // text-align: justify;
+  
+            .list-item {
+              display: flex;
+              margin-bottom: 14px;
+
+              .bullet-img {
+                width: 1em;
+                margin-right: 10px;
+                align-self: flex-start;
+                position: relative;
+                top: 6px;
+              }
+  
+              .list-item-text {
+                vertical-align: super;
+              }
+            }
+          }  
+        }
+
+        .operations-img {
+          background-image: url('../../../../assets/CCS-refocus.gif');
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          box-shadow: $box-shadow;
+        }
+
+        .blue-chip {
+          background-image: url('../../../../assets/compressed/blue-chip.jpg');
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+
+          .white-strip {
+            width: 40px;
+            height: 100%;
+            margin: 0 auto;
+            background-color: white;
+          }
+        }
+
+        
+      }
+    }
+  }
+
+  @include mobile {
+    .screen2-container {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      overflow-y: auto;
+
+      .section {
+        flex-direction: column;
+        justify-content: flex-start;
+        height: auto;
+        // height: 100%;
+
+        .sub-section {
+          width: 100%;
+          padding: 5%;
+          // height: 100%;
+
+          .text-section {
+            padding: 5%;
+
+            &.sm-container {
+              padding: 0;
+            }
+            
+            .heading {
+              font-size: 1.5rem;
+            }
+    
+            .text {
+              font-size: 1rem;
+              text-align: left;
+            }
+
+          }
+          .operations-img {
+            height: $img-height;
+            padding: 0;
+            margin: 0 10%;
+          }
+
+          .blue-chip {
+            height: $img-height;
+            padding: 0;
+            margin: 0 10%;
+
+            .white-strip {
+              width: 20px;
+            }
+          }
+        }
+
+        &.social-media {
+          display: block;
+
+          .sub-section {
+            padding: 0;
+
+            .text {
+              padding: 1% 5%;
+            }
+          }
+        }
+  
+      }
+    }
+  }
+
+
+  @include tablet {
+    .screen1-container .screen1-backdrop .screen1-content {
+      padding: 32% 10% 100px 50px;
+    }
+
+    .screen.screen2-container {
+      .section {
+        flex-direction: column;
+        justify-content: space-evenly;
+        .sub-section {
+          width: 100%;
+          .blue-chip {
+            height: 200px;
+            padding: 0;
+            margin: 0 10%;
+          }
+          .operations-img {
+            height: 200px;
+            padding: 0;
+            margin: 0 10%;
+          }
+        }
+      }
+    }
+  }
+
+
+}
