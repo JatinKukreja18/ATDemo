@@ -14,7 +14,7 @@ export default class Header extends Component {
     const { breadcrumbs } = this.props;
     if (!breadcrumbs) {
       return (
-        <Breadcrumbs className='breadcrumb-container' style={{visibility: 'hidden'}}>
+        <Breadcrumbs className='breadcrumb-container' style={{ visibility: 'hidden' }}>
           <Typography className='breadcrumb'>&nbsp;</Typography>
         </Breadcrumbs>
       );
@@ -24,16 +24,17 @@ export default class Header extends Component {
 
   render() {
     const { title, className, rootEl } = this.props;
-    const classes = className ? `am-header ${className}`: 'am-header';
+    const classes = className ? `am-header ${className}` : 'am-header';
+    console.log(rootEl);
     return (
       <React.Fragment>
-        <ElevationScroll rootEl={rootEl ? rootEl: null}>
+        <ElevationScroll rootEl={rootEl ? rootEl : null}>
           <AppBar className={classes} position='sticky'>
             <div className='overlay-header'></div>
             <Toolbar className=''>
               <div className='title-container'>
                 <Typography variant="h1" className='title'>{title}</Typography>
-                {this.renderBreadcrumbs()}                
+                {this.renderBreadcrumbs()}
               </div>
             </Toolbar>
           </AppBar>

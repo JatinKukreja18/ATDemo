@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Carousel } from "react-responsive-carousel";
-import { withRouter } from 'react-router-dom';
+import { Route, Switch, withRouter } from 'react-router-dom';
 import Card from '../../components/card/card';
 import ServiceDetailsPage from '../serviceDetail';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -11,6 +11,8 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import { SERVICE_LIST } from "./services.const";
 import { CAROUSEL_CONFIG } from "../../App.const";
+import { Transition, animated } from 'react-spring/renderprops'
+import * as easings from 'd3-ease'
 
 import "./services.scss";
 
@@ -20,10 +22,10 @@ const DIRECTIONS = {
   RIGHT: 'right'
 };
 
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Zoom ref={ref} {...props} timeout={500} />;
-});
-
+// const Transition = React.forwardRef(function Transition(props, ref) {
+//   return <Zoom ref={ref} {...props} timeout={500} />;
+// });
+// 
 
 // Right Section with carousel
 class RightSectionComponent extends Component {
@@ -40,15 +42,18 @@ class RightSectionComponent extends Component {
   }
 
   openDialog = () => {
-    this.setState({
-      detailsOpen: true
-    });
+    // this.setState({
+    //   detailsOpen: true
+    // });
   }
 
   closeDialog = () => {
-    this.setState({
-      detailsOpen: false
-    });
+    // this.setState({
+    //   detailsOpen: false
+    // });
+    console.log(this.subId);
+    this.props.history.push('/services');
+
   }
 
   onAnimationEnd = (event) => {
@@ -71,40 +76,45 @@ class RightSectionComponent extends Component {
   }
 
   linkClickHandler = (serviceId, subId) => {
-    this.setState({
-      serviceId: serviceId,
-      subId: subId ? subId: ''
-    },() => {
-      this.openDialog();
-    });
+    // this.setState({
+    //   serviceId: serviceId,
+    //   subId: subId ? subId : ''
+    // }, () => {
+    //   // this.openDialog();
+    //   console.log(this.props);
+    //   console.log(serviceId);
+    // });
+    console.log(subId);
+
+    this.props.history.push(this.props.match.path + '/' + serviceId + '#' + subId);
   }
 
-  renderMobileView = ()  => {
+  renderMobileView = () => {
     return (
       <div className='second-section'>
-      <Carousel {...CAROUSEL_CONFIG}>
-        {
-          SERVICE_LIST.map( (item, i) => {
-            return (
-              <div key={i} className={`carousel-item`}>
-                <Card item={item} linkClickHandler={this.linkClickHandler}/>
-              </div>
-            );
-          })
-        }
-      </Carousel>
+        <Carousel {...CAROUSEL_CONFIG}>
+          {
+            SERVICE_LIST.map((item, i) => {
+              return (
+                <div key={i} className={`carousel-item`}>
+                  <Card item={item} linkClickHandler={this.linkClickHandler} />
+                </div>
+              );
+            })
+          }
+        </Carousel>
 
       </div>
     )
   }
 
   renderDesktopView = () => {
-    const {currentCard, direction} = this.state;
+    const { currentCard, direction } = this.state;
     return (
       <div className='second-section'>
         <div className='carousel-item-container'>
           {
-            SERVICE_LIST.map( (item, i) => {
+            SERVICE_LIST.map((item, i) => {
               let classes = '';
               if (i === currentCard) {
                 classes = 'active';
@@ -120,29 +130,29 @@ class RightSectionComponent extends Component {
                 props = direction === DIRECTIONS.RIGHT ? {
                   onAnimationEnd: this.onAnimationEnd
                 } : {
-                  onAnimationStart: this.onAnimationEnd
-                }
+                    onAnimationStart: this.onAnimationEnd
+                  }
               }
-             
+
               return (
-                <div key={i} id={`c-item-${i}`}  className={`carousel-item ${classes}`} {...props}>
-                  <Card item={item} linkClickHandler={this.linkClickHandler}/>
+                <div key={i} id={`c-item-${i}`} className={`carousel-item ${classes}`} {...props}>
+                  <Card item={item} linkClickHandler={this.linkClickHandler} />
                 </div>
               );
             })
           }
-          <div className='carousel-item' style={{visibility: 'hidden'}}>
-            <Card item={{}}/>
+          <div className='carousel-item' style={{ visibility: 'hidden' }}>
+            <Card item={{}} />
           </div>
         </div>
         <div className='arrow-buttons-container'>
           <div className='prev-btn-container'>
-            <IconButton variant="contained" className='arrow-buttons prev-btn' onClick={this.onPrevClickHandler} disabled={currentCard===0}>
+            <IconButton variant="contained" className='arrow-buttons prev-btn' onClick={this.onPrevClickHandler} disabled={currentCard === 0}>
               <KeyboardArrowLeft />
             </IconButton>
           </div>
           <div className='next-btn-container'>
-            <IconButton variant="contained" className='arrow-buttons next-btn' onClick={this.onNextClickHandler} disabled={currentCard===SERVICE_LIST.length - 1}>
+            <IconButton variant="contained" className='arrow-buttons next-btn' onClick={this.onNextClickHandler} disabled={currentCard === SERVICE_LIST.length - 1}>
               <KeyboardArrowRight />
             </IconButton>
           </div>
@@ -152,18 +162,50 @@ class RightSectionComponent extends Component {
   }
 
   render() {
-    const { isMobile } = this.props;
-    const { detailsOpen, serviceId, subId } = this.state; 
+    const { isMobile, location } = this.props;
+    const { detailsOpen, serviceId, subId } = this.state;
     return (
       <>
-      {isMobile ? this.renderMobileView() : this.renderDesktopView()}
-      <Dialog open={detailsOpen} fullScreen scroll={'paper'} onClose={this.closeDialog} TransitionComponent={Transition}>
-        <DialogContent id='service-details-dialog-content' className='am-details-dialog'>
-        {
-          serviceId ? <ServiceDetailsPage isMobile={isMobile} serviceId={serviceId} subId={subId} closeDialog={this.closeDialog} /> : null
-        }
-        </DialogContent>
-      </Dialog>
+        {isMobile ? this.renderMobileView() : this.renderDesktopView()}
+
+        <Transition
+          config={{ duration: 1000, easing: easings.easeCubic }}
+          native
+          items={location}
+          keys={location.pathname.split('/')[2]}
+          from={{
+            // position: 'absolute',
+            opacity: 0,
+            transform: 'translate(0%, 50%) scale(0)',
+            transformOrigin: 'top'
+          }}
+          enter={{ opacity: 1, transform: 'translate(0%,0) scale(1)', transformOrigin: 'top' }}
+          leave={{ opacity: 0, transform: 'translate(0%,50%) scale(0) ', transformOrigin: 'top' }}>
+          {(loc, state) => style => (
+            <Switch location={state === 'update' ? location : loc}>
+              {/* <Route
+                exact
+                // key={i + 'route'}
+                path={'/services/design-engineering-services'}
+                render={props => ServiceDetailsPage(({ ...props, style, isMobile, subId }))}
+              /> */}
+              {SERVICE_LIST.map((item, i) => {
+                return (
+                  <Route
+                    exact
+
+                    key={i + 'route'}
+                    path={'/services/' + item.id}
+                    render={() => (<ServiceDetailsPage style={style} isMobile={isMobile} serviceId={item.id} subId={subId} closeDialog={this.closeDialog} />
+                    )}
+                  />
+                );
+              })}
+            </Switch>
+          )}
+        </Transition>
+
+
       </>
     );
   }

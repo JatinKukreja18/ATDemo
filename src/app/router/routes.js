@@ -58,7 +58,6 @@ export default class Routes extends Component {
                   keys={location.pathname.split('/')[1]}
                   from={{
                     position: 'absolute',
-                    width: '75%',
                     opacity: 0,
                     transform: 'translate(0%,20%) ',
                     transformOrigin: 'top'
@@ -82,6 +81,10 @@ export default class Routes extends Component {
                       <Route path={INQUIRY}>
                         <InquiriesPage isMobile={isMobile} style={style} />
                       </Route>
+                      <Route
+                        path={'/'}
+                        render={props => HomePage({ ...props, style, isMobile })}
+                      />
                       {/* <Route
                         path={INQUIRY}
                         render={props => InquiriesPage({ ...props, style, isMobile })}
@@ -93,7 +96,7 @@ export default class Routes extends Component {
                       {/* <Route exact path={PROJECTS}>
                         <ProductsPage isMobile={isMobile} style={style} />
                       </Route> */}
-                      <Route exact path={`${SERVICES}/:serviceId`}>
+                      <Route path={`${SERVICES}/:serviceId`}>
                         <ServiceDetailPage isMobile={isMobile} style={style} />
                       </Route>
                       <Route exact path={`${PROJECTS}/:projectId`}>
@@ -119,36 +122,6 @@ export default class Routes extends Component {
                 </Transition>
               )}
             />
-            {/* <Transition
-              native
-              // items={location}
-              // keys={location.pathname.split('/')[1]}
-              from={{ transform: 'translateY(100px)', opacity: 0 }}
-              enter={{ transform: 'translateY(0px)', opacity: 1 }}
-              leave={{ transform: 'translateY(100px)', opacity: 0 }}>
-              {(loc, state) => style => (
-                <Switch>
-                  <Route exact path={SERVICES}>
-                    <ServicesPage isMobile={isMobile} />
-                  </Route>
-                  <Route exact path={PROJECTS}>
-                    <ProductsPage isMobile={isMobile} />
-                  </Route>
-                  <Route exact path={`${SERVICES}/:serviceId`}>
-                    <ServiceDetailPage isMobile={isMobile} />
-                  </Route>
-                  <Route exact path={`${PROJECTS}/:projectId`}>
-                    <ProductDetailPage isMobile={isMobile} />
-                  </Route>
-                  <Route exact path={INQUIRY}>
-                    <InquiriesPage isMobile={isMobile} />
-                  </Route>
-                  <Route path={DEFAULT}>
-                    <HomePage isMobile={isMobile} />
-                  </Route>
-                </Switch>
-              )}
-            </Transition> */}
 
           </MainComponent>
         </Switch>

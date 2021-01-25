@@ -1,5 +1,10 @@
 @import '../styles/const.scss';
-
+.MuiDialog-paperFullScreen{
+  background-color: transparent !important;
+}
+.MuiDialog-root{
+  z-index: 1 !important;
+}
 .am {
   .am-active{
     color: $custom-green;

@@ -14,10 +14,10 @@
       display: flex;
       flex-direction: column;
       flex-wrap: nowrap;
-
+      background-color: #fff;
       .back-button-container {
         padding: 10px 0;
-        align-self: flex-end;
+        align-self: flex-start;
         .MuiButton-label {
           font-family: ProximaNova-Sbold;
         }

@@ -82,9 +82,11 @@
               transform: scale(1);
               opacity: 1;
               z-index: 2;
-              animation: slide-in .5s ease-in-out;
-              margin-left: -500px;
-  
+              // animation: slide-in .5s ease-in-out;
+              margin-left: -325px;
+              &:first-of-type{
+                margin-left: -500px;
+              }
               @keyframes slide-in {
                 0% {
                   margin-left: 0;
@@ -102,10 +104,16 @@
             }
   
             &.old {
-              margin-left: -500px;
-              animation: slide-out .5s ease-in-out;
+              margin-left: -325px;
+              // animation: slide-out .5s ease-in-out;
               z-index: 1;  
-              
+              // margin-bottom: -30px;
+              transform: translateY(20px);
+              opacity: .3;
+              transition-delay: .3s;
+              &:first-of-type{
+                margin-left: -500px;
+              }
               @keyframes slide-out {
                 0% {
                   z-index: 2;
@@ -123,7 +131,8 @@
             &.new {
               transform: scale(0.8);
               opacity: 0.8;
-              animation: left-slide-out .5s ease-in-out;
+              z-index: 2;
+              // animation: left-slide-out .5s ease-in-out;
               
               @keyframes left-slide-out {
                 0% {
@@ -146,7 +155,15 @@
               opacity: 1;
               z-index: 2;
               margin-left: -500px;
-              animation: left-focus .5s ease-in-out;
+              -webkit-transition: transform 0.3s ease-out 0.3s, 0s opacity 0s ease;
+              -moz-transition: transform 0.3s ease-out 0.3s, 0s opacity 0s ease;
+              -o-transition: transform 0.3s ease-out 0.3s, 0s opacity 0s ease;
+              transition: transform 0.3s ease-out 0.3s, 0s opacity 0s ease;
+              &:not(:first-of-type){
+
+                margin-left: -325px;
+              }
+              // animation: left-focus .5s ease-in-out;
 
               @keyframes left-focus {
                 0% {
@@ -165,10 +182,13 @@
             }
   
             &.old {
-              margin-left: -500px;
-              opacity: 0;
-              animation: left-focus .5s ease-in-out;
-              
+              margin-left: -325px;
+              opacity: 0.3;
+              transform: translateY(20px);
+              // animation: left-focus .5s ease-in-out;
+              &:first-of-type{
+                margin-left: -500px;
+              }
               @keyframes left-focus {
                 0% {
                   opacity: 0;
@@ -206,7 +226,7 @@
 
       .arrow-buttons-container {
         display: flex;
-        margin: 5% 0 0 10%;
+        margin: calc(5% + 20px) 0 0 10%;
 
         .prev-btn-container {
           margin-right: 5px;
@@ -282,7 +302,7 @@
               &.new {
                 transform: scale(0.8);
                 opacity: 0.8;
-                animation: left-slide-out .5s ease-in-out;
+                // animation: left-slide-out .5s ease-in-out;
                 margin-left: 300px;
                 
                 @keyframes left-slide-out {
@@ -306,7 +326,7 @@
                 opacity: 1;
                 z-index: 2;
                 margin-left: 0px;
-                animation: left-focus .5s ease-in-out;
+                // animation: left-focus .5s ease-in-out;
   
                 @keyframes left-focus {
                   0% {
@@ -323,7 +343,7 @@
               &.old {
                 margin-left: 0px;
                 opacity: 0;
-                animation: left-focus .5s ease-in-out;
+                // animation: left-focus .5s ease-in-out;
                 
                 @keyframes left-focus {
                   0% {

@@ -25,7 +25,6 @@ class BaseMenuComponent extends Component {
     window.sessionStorage.setItem('navigated', true)
     const { refreshHandler, history } = this.props;
     const shouldRefresh = this.state.selected === menuItem.id;
-    window.onbeforeunload = function (e) { sessionStorage.clear(); };
     this.setState({
       selected: menuItem.id
     }, () => {

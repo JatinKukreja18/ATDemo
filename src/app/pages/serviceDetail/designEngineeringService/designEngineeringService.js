@@ -29,6 +29,7 @@ export default class DesignEngineeringServiceComponent extends Component {
     let title = '';
     let focusId;
     let subSectionIds = [];
+    console.log(service);
     if (service) {
       let subSection;
       if (service.subList.length > 0) {
@@ -43,7 +44,6 @@ export default class DesignEngineeringServiceComponent extends Component {
       } else {
         title = service.displayText;
       }
-
     }
     this.setState({
       title: title,
@@ -51,20 +51,34 @@ export default class DesignEngineeringServiceComponent extends Component {
     }, () => {
       if (focusId) {
         setTimeout(() => {
-          document.getElementById(focusId).scrollIntoView({ alignToTop: false, behavior: "smooth", block: "end", inline: "nearest" });
+          this.scrollToTargetAdjusted(focusId);
+          // document.getElementById(focusId).scrollIntoView({ alignToTop: false, behavior: "smooth", block: "end", inline: "nearest" });
         }, 500);
       }
     });
-    document.getElementById('service-details-dialog-content').addEventListener('scroll', this.scrollEventHandler);
+    console.log(this.props.service);
+    // document.getElementById(this.props.service.id + '-content').addEventListener('scroll', this.scrollEventHandler);
   }
-
+  scrollToTargetAdjusted = (id) => {
+    var element = document.getElementById(id);
+    var headerOffset = 180;
+    var elementPosition = element.offsetTop
+    var offsetPosition = (elementPosition - 80) - headerOffset;
+    console.log(offsetPosition);
+    document.querySelector('#' + this.props.service.id + '-content').scrollTo({
+      top: offsetPosition,
+      behavior: "smooth"
+    });
+  }
   scrollEventHandler = (event) => {
     const scrollActive = event.target.scrollTop > 50;
     this.setState({ scrollActive: scrollActive })
   }
 
   scrollToTop = () => {
-    document.getElementById('service-details-dialog-content').scrollTo({ top: 0, behavior: 'smooth' });
+    console.log(this.props.service);
+
+    document.getElementById(this.props.service.id + '-content').scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   updateTitle = (highLightedEl) => {
@@ -78,7 +92,7 @@ export default class DesignEngineeringServiceComponent extends Component {
     const offset = -50 - (window.innerHeight / 2);
     // This scroll spy will help us identify the scroll position and update the title accordingly
     return (
-      <Scrollspy items={subSectionIds} style={{ display: 'none' }} currentClassName='abc' rootEl='#service-details-dialog-content' onUpdate={this.updateTitle} offset={offset}>
+      <Scrollspy items={subSectionIds} style={{ display: 'none' }} currentClassName='abc' rootEl={'#' + this.props.service.id + '-content'} onUpdate={this.updateTitle} offset={offset}>
         {
           subSectionIds.map(subSection => <li key={subSection}><a href={`#${subSection}`}>{subSection}</a></li>)
         }
@@ -112,8 +126,8 @@ export default class DesignEngineeringServiceComponent extends Component {
     if (title) {
       return (
         <div className='service-details-container'>
-          { this.getScrollSpy()}
-          <Header className='service-details-header' title={title} breadcrumbs={this.getBreadcrumbs()} rootEl='#service-details-dialog-content' />
+          {/* { this.getScrollSpy()} */}
+          <Header className='service-details-header' title={title} breadcrumbs={this.getBreadcrumbs()} rootEl={'#' + this.props.service.id + '-content'} />
           <Container className='details-content' >
             <div className='back-button-container'>
               <Button className='back-button' startIcon={<KeyboardArrowLeftIcon className='am-icon' />} onClick={backButtonClickHandler.bind(this)}>
@@ -141,7 +155,8 @@ export default class DesignEngineeringServiceComponent extends Component {
   }
 
   componentWillUnmount() {
-    document.getElementById('service-details-dialog-content').removeEventListener('scroll', this.scrollEventHandler);
+    console.log(this.props.service.id);
+    // document.getElementById(this.props.service.id + '-content').removeEventListener('scroll', this.scrollEventHandler);
   }
 }
 
