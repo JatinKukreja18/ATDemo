@@ -11,8 +11,9 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import { SERVICE_LIST } from "./services.const";
 import { CAROUSEL_CONFIG } from "../../App.const";
-import { Transition, animated } from 'react-spring/renderprops'
+import { Spring, Transition, animated } from 'react-spring/renderprops'
 import * as easings from 'd3-ease'
+import { initialAnimationState, finalAnimationState } from '../../utils/animationHelper';
 
 import "./services.scss";
 
@@ -37,7 +38,16 @@ class RightSectionComponent extends Component {
       subId: '',
       detailsOpen: false,
       currentCard: 0,
-      direction: DIRECTIONS.RIGHT
+      direction: DIRECTIONS.RIGHT,
+      fromAnimation: {
+        height: `calc(0vh + 20px)`,
+        width: `calc(0% + 20px)`,
+        transform: `translate(calc(0px - 50px), 50px)`,
+        background: '#ffffff',
+        borderRadius: 12,
+        overflow: 'hidden'
+      },
+      toAnimation: finalAnimationState()
     };
   }
 
@@ -52,8 +62,12 @@ class RightSectionComponent extends Component {
     //   detailsOpen: false
     // });
     console.log(this.subId);
-    this.props.history.push('/services');
-
+    this.setState({
+      fromAnimation: finalAnimationState,
+    }, () => {
+      console.log(this.state.fromAnimation);
+      this.props.history.push('/services');
+    })
   }
 
   onAnimationEnd = (event) => {
@@ -75,7 +89,7 @@ class RightSectionComponent extends Component {
     });
   }
 
-  linkClickHandler = (serviceId, subId) => {
+  linkClickHandler = (serviceId, subId, index) => {
     // this.setState({
     //   serviceId: serviceId,
     //   subId: subId ? subId : ''
@@ -84,9 +98,14 @@ class RightSectionComponent extends Component {
     //   console.log(this.props);
     //   console.log(serviceId);
     // });
-    console.log(subId);
-
-    this.props.history.push(this.props.match.path + '/' + serviceId + '#' + subId);
+    console.log(index);
+    const rect = document.querySelector('#c-item-' + index).getBoundingClientRect();
+    this.setState({
+      fromAnimation: initialAnimationState(rect),
+    }, () => {
+      console.log(this.state.fromAnimation);
+      this.props.history.push(this.props.match.path + '/' + serviceId + '#' + subId);
+    })
   }
 
   renderMobileView = () => {
@@ -136,7 +155,7 @@ class RightSectionComponent extends Component {
 
               return (
                 <div key={i} id={`c-item-${i}`} className={`carousel-item ${classes}`} {...props}>
-                  <Card item={item} linkClickHandler={this.linkClickHandler} />
+                  <Card item={item} linkClickHandler={this.linkClickHandler} index={i} />
                 </div>
               );
             })
@@ -160,50 +179,79 @@ class RightSectionComponent extends Component {
       </div>
     );
   }
-
+  onCardClick = () => {
+    const rect = {
+      height: 20,
+      width: 20,
+      left: 20,
+      top: 20,
+    }
+    this.setState({
+      fromAnimation: {
+        height: `calc(0vh + ${rect.height}px)`,
+        width: `calc(0% + ${rect.width}px)`,
+        transform: `translate(${rect.left}px, ${rect.top}px)`,
+        // background: '#ffffff',
+        borderRadius: 12
+      },
+      toAnimation: {
+        height: "calc(100vh + 0px)",
+        width: "calc(100% + 0px)",
+        transform: "translate(0px, 0px)",
+        // background: '#333333',
+        borderRadius: 0
+      }
+    });
+  }
   render() {
     const { isMobile, location } = this.props;
-    const { detailsOpen, serviceId, subId } = this.state;
+    const { detailsOpen, serviceId, subId, fromAnimation, toAnimation, currentCard } = this.state;
+    const calculatedAnimation = { from: fromAnimation, to: toAnimation }
+    console.log(calculatedAnimation);
     return (
       <>
         {isMobile ? this.renderMobileView() : this.renderDesktopView()}
 
-        <Transition
+        {/* <Spring
           config={{ duration: 1000, easing: easings.easeCubic }}
           native
           items={location}
           keys={location.pathname.split('/')[2]}
-          from={{
-            // position: 'absolute',
-            opacity: 0,
-            transform: 'translate(0%, 50%) scale(0)',
-            transformOrigin: 'top'
-          }}
-          enter={{ opacity: 1, transform: 'translate(0%,0) scale(1)', transformOrigin: 'top' }}
-          leave={{ opacity: 0, transform: 'translate(0%,50%) scale(0) ', transformOrigin: 'top' }}>
-          {(loc, state) => style => (
-            <Switch location={state === 'update' ? location : loc}>
-              {/* <Route
-                exact
-                // key={i + 'route'}
-                path={'/services/design-engineering-services'}
-                render={props => ServiceDetailsPage(({ ...props, style, isMobile, subId }))}
-              /> */}
-              {SERVICE_LIST.map((item, i) => {
-                return (
-                  <Route
-                    exact
+          from={fromAnimation}
+          to={toAnimation}>
+            
+          {(loc, state) => style => ( */}
 
-                    key={i + 'route'}
-                    path={'/services/' + item.id}
-                    render={() => (<ServiceDetailsPage style={style} isMobile={isMobile} serviceId={item.id} subId={subId} closeDialog={this.closeDialog} />
-                    )}
-                  />
-                );
-              })}
-            </Switch>
-          )}
-        </Transition>
+        {/* <Spring
+          from={{ opacity: 0 }}
+          to={{ opacity: 1 }}>
+          {props => <div style={props}> */}
+        <Switch>
+          {SERVICE_LIST.map((item, i) => {
+            return (
+              <Route
+                exact
+
+                key={i + 'route'}
+                path={'/services/' + item.id}
+                render={() => (
+                  <ServiceDetailsPage
+                    animation={calculatedAnimation}
+                    isMobile={isMobile}
+                    serviceId={item.id}
+                    subId={subId}
+                    closeDialog={this.closeDialog}
+                    currentCard={currentCard} />
+                )}
+              />
+            );
+          })}
+        </Switch>
+        {/* </div>}
+        </Spring> */}
+
+        {/* )} */}
+        {/* </Spring> */}
 
 
       </>
