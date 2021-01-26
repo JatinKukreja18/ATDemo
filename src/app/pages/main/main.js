@@ -17,6 +17,12 @@ export default class IndexComponent extends Component {
     window.addEventListener('onload', function () {
       console.log('loader off');
     })
+    document.querySelector(':root').style
+      .setProperty('--vh', window.innerHeight / 100 + 'px');
+    window.addEventListener('resize', () => {
+      document.querySelector(':root').style
+        .setProperty('--vh', window.innerHeight / 100 + 'px');
+    })
     setTimeout(() => {
       this.setState({ loading: false });
     }, 3000);
@@ -53,7 +59,13 @@ export default class IndexComponent extends Component {
     const { children } = this.props;
     return (
       <div className='mobile-view'>
-        <MobileMenuComponent />
+        <Spring
+          config={{ duration: 400 }}
+          from={{ opacity: 0, top: '-80px' }}
+          to={{ opacity: 1, top: '0px' }}>
+          {props =>
+            <MobileMenuComponent style={props} changingRoute={this.props.changingRoute} />}
+        </Spring>
         <div className='content'>
           {children}
         </div>

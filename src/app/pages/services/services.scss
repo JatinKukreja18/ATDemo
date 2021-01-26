@@ -373,6 +373,8 @@
     .services-container {
       flex-direction: column;
       padding: 0;
+      display: block;
+      height: calc(100 * var(--vh) - 80px);
 
       .first-section {
         width: 100%;
@@ -380,6 +382,8 @@
 
       .second-section {
         width: 100%;
+        max-width: 400px;
+        margin: auto;
         overflow-x: inherit;
 
         .carousel-item-container {

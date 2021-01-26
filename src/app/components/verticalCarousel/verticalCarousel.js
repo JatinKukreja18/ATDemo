@@ -61,6 +61,7 @@ class Panel extends React.Component {
 		const wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
 		window.addEventListener('DOMMouseScroll', this.scrollHandler);
 		window.addEventListener(wheelEvent, this.scrollHandler);
+		window.addEventListener('scroll', this.scrollHandler);
 		window.addEventListener('keydown', this.keyDownHandler);
 	}
 

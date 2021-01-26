@@ -372,6 +372,8 @@
     .projects-container {
       flex-direction: column;
       padding: 0;
+      display: block;
+      height: calc(100 * var(--vh) - 80px);
 
       .first-section {
         width: 100%;
@@ -380,7 +382,8 @@
       .second-section {
         width: 100%;
         overflow-x: inherit;
-        
+        max-width: 400px;
+        margin: auto;
         .carousel-item-container {
           padding: 5%;
         }
