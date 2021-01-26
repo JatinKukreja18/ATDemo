@@ -5,7 +5,7 @@ import DesktopMenuComponent from '../../components/menu/desktop/menu.desktop';
 import MobileMenuComponent from "../../components/menu/mobile/menu.mobile";
 import { PROJECT_LIST } from "../projects/projects.const";
 import { Spring, animated } from 'react-spring/renderprops'
-import { initialAnimationState, finalAnimationState } from '../../utils/animationHelper';
+import { initialAnimationState, initialAnimationStateMobile, finalAnimationStateMobile, finalAnimationState } from '../../utils/animationHelper';
 
 import './projectDetail.scss';
 
@@ -37,9 +37,20 @@ class ProjectDetailsIndexComponent extends Component {
     }
   }
   backButtonClickHandler = () => {
-    const f = finalAnimationState();
-    const rect = document.querySelector('#c-item-' + this.props.currentCard).getBoundingClientRect();
-    const t = initialAnimationState(rect);
+    let f;
+    let rect;
+    let t;
+    if (this.props.isMobile) {
+      console.log(this.props.currentCard);
+      f = finalAnimationStateMobile();
+      rect = document.querySelector('#c-item-' + this.props.currentCard).getBoundingClientRect();
+      t = initialAnimationStateMobile(rect);
+    } else {
+
+      f = finalAnimationState();
+      rect = document.querySelector('#c-item-' + this.props.currentCard).getBoundingClientRect();
+      t = initialAnimationState(rect);
+    }
 
     this.setState({ showPage: !this.state.showPage, reverseAnimation: true, reversePosition: { from: f, to: t } }, () => {
       console.log('backing');
@@ -103,17 +114,44 @@ class ProjectDetailsIndexComponent extends Component {
   }
 
   renderMobileView = () => {
-    const { project } = this.state;
-    const { isMobile, subId } = this.props;
+    const { project, reverseAnimation, reversePosition } = this.state;
+    const { isMobile, style, location, animation } = this.props;
     const DetailComponent = project.detailsComponent;
-    return (
-      <div className='mobile-view'>
-        <MobileMenuComponent refreshHandler={this.backButtonClickHandler} />
-        <div className='content'>
-          <DetailComponent project={project} isMobile={isMobile} backButtonClickHandler={this.backButtonClickHandler} subId={subId} />
-        </div>
-      </div>
-    );
+    console.log(animation);
+    const subId = location.hash.substring(1);
+    if (animation) {
+      return (
+        <>
+          {this.state.showPage ?
+            <Spring
+              from={{ opacity: '0' }}
+              to={{ opacity: '1' }} config={{ duration: 1000 }}>
+              {props =>
+                <div className=' am-modal-page' id={project.id + '-content'}>
+                  <div className='content' style={{ opacity: props.opacity, height: 'auto' }}>
+                    <DetailComponent project={project} isMobile={isMobile} backButtonClickHandler={this.backButtonClickHandler} subId={subId} />
+                  </div>
+                </div>}
+            </Spring>
+            :
+            <Spring
+              from={reverseAnimation ? reversePosition.from : animation?.from}
+              to={reverseAnimation ? reversePosition.to : animation?.to} config={reverseAnimation ? { duration: 300 } : { duration: 500 }}
+              onRest={this.animationEnds}>
+              {props =>
+                <div style={{
+                  ...props, position: "fixed"
+
+                }} className={'desktop-view am-modal-page'}>
+                  {/* <DesktopMenuComponent refreshHandler={this.backButtonClickHandler} /> */}
+                </div>}
+            </Spring>
+
+          }
+        </>
+
+      );
+    }
   }
 
   render() {

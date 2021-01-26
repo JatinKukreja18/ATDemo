@@ -87,7 +87,7 @@
   @include mobile {
     .project-details-container {
       .details-content {
-        padding-top: 8%;
+        padding: 0 20px 60px 20px;
 
         .image-container {
           .details-image {
@@ -98,7 +98,16 @@
         .subItem-container .des-title {
           font-size: 2.5em;
         }
-
+        .back-button-container {
+          width: 100%;
+          left: 0;
+          .back-button{
+            width: 80px;
+            padding: 5px 10px;
+            font-size: 12px;
+            line-height: 12px;
+          }
+        }
       }
     }
   }

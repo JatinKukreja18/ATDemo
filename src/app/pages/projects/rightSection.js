@@ -11,7 +11,7 @@ import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import { PROJECT_LIST } from "./projects.const";
 import { CAROUSEL_CONFIG } from "../../App.const";
-import { initialAnimationState, finalAnimationState } from '../../utils/animationHelper';
+import { initialAnimationState, initialAnimationStateMobile, finalAnimationState, finalAnimationStateMobile } from '../../utils/animationHelper';
 
 import "./projects.scss";
 
@@ -44,7 +44,8 @@ class ProjectRightSectionComponent extends Component {
         borderRadius: 12,
         overflow: 'hidden'
       },
-      toAnimation: finalAnimationState()
+      toAnimation: finalAnimationState(),
+      toAnimationMobile: finalAnimationStateMobile()
     };
   }
 
@@ -63,14 +64,21 @@ class ProjectRightSectionComponent extends Component {
       fromAnimation: finalAnimationState,
     }, () => {
       console.log(this.state.fromAnimation);
-      this.props.history.push('/services');
+      this.props.history.push('/projects');
     })
   }
 
   onAnimationEnd = (event) => {
     event.target.classList.add("hidden");
   }
-
+  mobileSlideChange = (v) => {
+    console.log(v);
+    console.log(this.state.currentCard);
+    this.setState({
+      currentCard: v,
+      direction: this.state.currentCard < v ? DIRECTIONS.LEFT : DIRECTIONS.RIGHT
+    });
+  }
   onPrevClickHandler = () => {
     this.setState({
       currentCard: this.state.currentCard === 0 ? 0 : this.state.currentCard - 1,
@@ -95,23 +103,33 @@ class ProjectRightSectionComponent extends Component {
     // });
     console.log(index);
     const rect = document.querySelector('#c-item-' + index).getBoundingClientRect();
-    this.setState({
-      fromAnimation: initialAnimationState(rect),
-    }, () => {
-      console.log(this.state.fromAnimation);
-      this.props.history.push(this.props.match.path + '/' + projectId + '#' + subId);
-    })
+    if (this.props.isMobile) {
+      this.setState({
+        fromAnimation: initialAnimationStateMobile(rect, document.querySelector('.projects-container').scrollTop),
+      }, () => {
+        console.log(document.querySelector('.projects-container').scrollTop);
+        console.log(this.state.fromAnimation);
+        this.props.history.push(this.props.match.path + '/' + projectId + '#' + subId);
+      })
+    } else {
+      this.setState({
+        fromAnimation: initialAnimationState(rect),
+      }, () => {
+        console.log(this.state.fromAnimation);
+        this.props.history.push(this.props.match.path + '/' + projectId + '#' + subId);
+      })
+    }
   }
 
   renderMobileView = () => {
     return (
       <div className='second-section'>
-        <Carousel {...CAROUSEL_CONFIG}>
+        <Carousel {...CAROUSEL_CONFIG} onChange={this.mobileSlideChange}>
           {
             PROJECT_LIST.map((item, i) => {
               return (
-                <div key={i} className={`carousel-item`}>
-                  <Card item={item} linkClickHandler={this.linkClickHandler} />
+                <div key={i} id={`c-item-${i}`} className={`carousel-item`}>
+                  <Card item={item} linkClickHandler={this.linkClickHandler} index={i} />
                 </div>
               );
             })
@@ -200,8 +218,9 @@ class ProjectRightSectionComponent extends Component {
   }
   render() {
     const { isMobile } = this.props;
-    const { detailsOpen, projectId, subId, fromAnimation, toAnimation, currentCard } = this.state;
-    const calculatedAnimation = { from: fromAnimation, to: toAnimation }
+    const { detailsOpen, projectId, subId, fromAnimation, toAnimationMobile, toAnimation, currentCard } = this.state;
+    const calculatedAnimation = { from: fromAnimation, to: isMobile ? toAnimationMobile : toAnimation }
+
     console.log(calculatedAnimation);
     // return (
     //   <>

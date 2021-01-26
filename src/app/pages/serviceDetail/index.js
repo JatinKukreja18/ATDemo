@@ -164,7 +164,6 @@ class ServiceDetailsIndexComponent extends Component {
       return (
         <>
           {isMobile ? this.renderMobileView() : this.renderDesktopView()}
-          {/* {this.renderDesktopView()} */}
         </>
       );
     }

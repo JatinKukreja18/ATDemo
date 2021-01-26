@@ -55,6 +55,7 @@
 
     &.scroll-triggered {
       padding: 0;
+      overflow: hidden;
       .title-container {
         margin: 20px 0px;
         .breadcrumb-container {
@@ -71,7 +72,11 @@
     .am-header{
       left: 0;
       top: 0%;
-
+      &.scroll-triggered{
+        .title-container{
+          margin: 10px 0;
+        }
+      }
       .title-container {  
         .title {
           font-size: 1.5rem;
