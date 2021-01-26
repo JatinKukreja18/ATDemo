@@ -74,8 +74,8 @@ class ServiceDetailsIndexComponent extends Component {
               from={{ opacity: '0' }}
               to={{ opacity: '1' }} config={{ duration: 1000 }}>
               {props =>
-                <div className='desktop-view am-modal-page' id={service.id + '-content'}>
-                  <div className='content' style={{ ...props }}>
+                <div className=' am-modal-page' id={service.id + '-content'}>
+                  <div className='content' style={{ opacity: props.opacity, height: 'auto' }}>
                     <DetailComponent service={service} isMobile={isMobile} backButtonClickHandler={this.backButtonClickHandler} subId={subId} />
                   </div>
                 </div>}
@@ -91,7 +91,7 @@ class ServiceDetailsIndexComponent extends Component {
                   left: 0,
                   right: 0
 
-                }} className='desktop-view am-modal-page' id={service.id + '-content'}>
+                }} className='desktop-view am-modal-page'>
                   {/* <DesktopMenuComponent refreshHandler={this.backButtonClickHandler} /> */}
                 </div>}
             </Spring>

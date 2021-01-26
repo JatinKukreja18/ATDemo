@@ -10,13 +10,13 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    padding: 2rem;
+    padding: 0 2rem;
     padding-right: 0;
 
     .first-section {
       width: 40%;
       margin: auto 0;
-
+      padding: 2rem 0 ;
       .services-content {
         width: 90%;
         margin: auto;
@@ -47,7 +47,7 @@
     .second-section {
       width: 60%;
       margin: auto 0;
-      padding: 0 40px;
+      padding: 2rem 40px;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;

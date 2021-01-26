@@ -16,7 +16,17 @@ import * as easings from 'd3-ease'
 export default class Routes extends Component {
 
   state = {
-    isMobile: false
+    isMobile: false,
+    transition: {
+      from: {
+        position: 'absolute',
+        opacity: 0,
+        top: '20%',
+        overflow: 'hidden'
+      },
+      enter: { opacity: 1, top: '0%', overflow: 'auto' },
+      leave: { opacity: 0, top: '-10px ', overflow: 'hidden' }
+    }
   };
 
   componentDidMount() {
@@ -38,15 +48,53 @@ export default class Routes extends Component {
       isMobile: mobileDeviceFlag
     });
   }
+  changingRoute = (item) => {
+    console.log(item);
+    if (window.sessionStorage.currentMenuItem > item.id) {
+      console.log('direction down');
+      this.setState({
+        transition: {
+          from: {
+            position: 'absolute',
+            opacity: 0,
+            top: '-20%',
+            // transform: 'translate(0%,-20%) ',
 
+            overflow: 'hidden'
+          },
+          enter: { opacity: 1, top: '0%', overflow: 'auto' },
+          leave: { opacity: 0, top: '10px', overflow: 'hidden' }
+        }
+      })
+    } else {
+      console.log('direction up');
+      this.setState({
+        transition: {
+          from: {
+            position: 'absolute',
+            opacity: 0,
+            top: '20%',
+
+            overflow: 'hidden'
+          },
+          enter: { opacity: 1, top: '0%', overflow: 'auto' },
+          leave: { opacity: 0, top: '-10px', overflow: 'hidden' }
+        }
+      })
+    }
+    window.sessionStorage.setItem('navigated', true)
+    window.sessionStorage.setItem('currentMenuItem', item.id);
+    // history.push(menuItem.path);
+
+  }
   render() {
-    const { isMobile } = this.state;
+    const { isMobile, transition } = this.state;
 
     // setup the routes
     return (
       <BrowserRouter>
         <Switch>
-          <MainComponent isMobile={isMobile}>
+          <MainComponent isMobile={isMobile} changingRoute={this.changingRoute}>
 
             <Route
               render={({ location, ...rest }) => (
@@ -56,14 +104,9 @@ export default class Routes extends Component {
                   native
                   items={location}
                   keys={location.pathname.split('/')[1]}
-                  from={{
-                    position: 'absolute',
-                    opacity: 0,
-                    transform: 'translate(0%,20%) ',
-                    transformOrigin: 'top'
-                  }}
-                  enter={{ opacity: 1, transform: 'translate(0%,0) ', transformOrigin: 'top' }}
-                  leave={{ opacity: 0, transform: 'translate(0%,-10px) ', transformOrigin: 'top' }}>
+                  from={transition.from}
+                  enter={transition.enter}
+                  leave={transition.leave}>
                   {(loc, state) => style => (
                     <Switch location={state === 'update' ? location : loc}>
                       <Route

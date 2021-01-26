@@ -27,23 +27,24 @@ export default class IndexComponent extends Component {
     return (
       <div className='desktop-view'>
         <Spring
-          config={{ duration: 800, delay: 1000 }}
+          config={{ duration: 800, delay: 200 }}
           from={{ opacity: 0 }}
           to={{ opacity: 1 }}>
           {props =>
 
-            <DesktopMenuComponent style={props} />}
+            <DesktopMenuComponent style={props} changingRoute={this.props.changingRoute} />}
         </Spring>
-        <Spring
-          config={{ duration: 800, delay: 2000 }}
+        {/* <Spring
+          config={{ duration: 800, }}
           from={{ opacity: 0 }}
           to={{ opacity: 1 }}>
           {props =>
-          (
-            <div className='content' style={props}>
-              {children}
-            </div>)}
-        </Spring>
+          ( */}
+        <div className='content' >
+          {children}
+        </div>
+        {/* )}
+        </Spring> */}
       </div>
     );
   }

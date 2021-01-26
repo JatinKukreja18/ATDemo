@@ -25,7 +25,6 @@ export default class Header extends Component {
   render() {
     const { title, className, rootEl } = this.props;
     const classes = className ? `am-header ${className}` : 'am-header';
-    console.log(rootEl);
     return (
       <React.Fragment>
         <ElevationScroll rootEl={rootEl ? rootEl : null}>

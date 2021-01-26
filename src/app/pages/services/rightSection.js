@@ -179,30 +179,6 @@ class RightSectionComponent extends Component {
       </div>
     );
   }
-  onCardClick = () => {
-    const rect = {
-      height: 20,
-      width: 20,
-      left: 20,
-      top: 20,
-    }
-    this.setState({
-      fromAnimation: {
-        height: `calc(0vh + ${rect.height}px)`,
-        width: `calc(0% + ${rect.width}px)`,
-        transform: `translate(${rect.left}px, ${rect.top}px)`,
-        // background: '#ffffff',
-        borderRadius: 12
-      },
-      toAnimation: {
-        height: "calc(100vh + 0px)",
-        width: "calc(100% + 0px)",
-        transform: "translate(0px, 0px)",
-        // background: '#333333',
-        borderRadius: 0
-      }
-    });
-  }
   render() {
     const { isMobile, location } = this.props;
     const { detailsOpen, serviceId, subId, fromAnimation, toAnimation, currentCard } = this.state;

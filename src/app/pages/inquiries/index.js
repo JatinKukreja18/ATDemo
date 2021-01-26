@@ -49,7 +49,7 @@ export default class InquiriesComponent extends Component {
           <FormControl fullWidth className='form-field'>
             <TextField InputProps={{ className: 'form-input' }} InputLabelProps={{ className: 'form-label' }} label='Request' id="request" name='request' multiline rows={4} required value={request} onChange={this.fieldUpdateHandler} />
           </FormControl>
-          <div className='action-buttons'>
+          <div className='action-buttons' style={{ marginTop: '20px' }}>
             <Button variant="contained" className='submit-button' type='submit' startIcon={<KeyboardArrowRightIcon />}>
               Submit
             </Button>

@@ -19,7 +19,7 @@ export default class CardComponent extends Component {
       html = <ul className='list'> {subListHtml}</ul>;
     }
     const cssClasses = classes ? `am-card ${classes}` : 'am-card';
-    const itemClickHandler = linkClickHandler ? linkClickHandler.bind(this, id, index) : null;
+    const itemClickHandler = linkClickHandler ? linkClickHandler.bind(this, id, '', index) : null;
     return (
       <Card className={cssClasses} style={{ backgroundImage: 'url("' + backgroundImage + '")' }}>
         <CardContent className='am-card-content'>

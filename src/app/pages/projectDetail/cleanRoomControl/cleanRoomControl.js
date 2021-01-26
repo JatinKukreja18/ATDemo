@@ -32,7 +32,7 @@ export default class CleanRoomControlComponent extends Component {
     if (project) {
       return (
         <div className='project-details-container'>
-          <Header className='project-details-header' title={project.displayText} breadcrumbs={this.getBreadcrumbs()} rootEl='#project-details-dialog-content' />
+          <Header className='project-details-header' title={project.displayText} breadcrumbs={this.getBreadcrumbs()} rootEl={'#' + project.id + '-content'} />
           <Container className='details-content'>
             <div className='back-button-container'>
               <Button className='back-button' startIcon={<KeyboardArrowLeftIcon className='am-icon' />} onClick={backButtonClickHandler.bind(this)}>

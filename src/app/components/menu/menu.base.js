@@ -22,7 +22,6 @@ class BaseMenuComponent extends Component {
   }
 
   setSelectedMenu = (menuItem) => {
-    window.sessionStorage.setItem('navigated', true)
     const { refreshHandler, history } = this.props;
     const shouldRefresh = this.state.selected === menuItem.id;
     this.setState({
@@ -31,6 +30,7 @@ class BaseMenuComponent extends Component {
       if (shouldRefresh && refreshHandler && typeof refreshHandler === 'function') {
         refreshHandler();
       } else {
+        this.props.changingRoute(menuItem)
         history.push(menuItem.path);
       }
     });

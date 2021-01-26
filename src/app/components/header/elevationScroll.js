@@ -5,7 +5,7 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger';
 function ElevationScroll(props) {
   const { children, rootEl } = props;
 
-  let el = rootEl ?  document.querySelector(rootEl): null;
+  let el = rootEl ? document.querySelector(rootEl) : null;
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
@@ -14,7 +14,8 @@ function ElevationScroll(props) {
 
   return React.cloneElement(children, {
     elevation: trigger ? 4 : 0,
-    position: trigger ? 'fixed' : 'sticky',
+    // changing position to be always sticky
+    position: trigger ? 'sticky' : 'sticky',
     className: trigger ? `${children.props.className} scroll-triggered` : `${children.props.className}`
   });
 }

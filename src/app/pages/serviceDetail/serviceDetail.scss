@@ -16,14 +16,29 @@
       flex-direction: column;
       flex-wrap: nowrap;
       background-color: #fff;
-
+      padding: 0 40px 100px 40px;
       .no-top-margin {
         margin-top: 0;
       }
 
       .back-button-container {
         padding: 10px 0;
-        align-self: flex-start;
+        align-self: flex-end;
+        width: 75%;
+        display: flex;
+        justify-content: flex-end;
+        position: fixed;
+        /* background: #fff; */
+        left: 25%;
+        padding: 10px 4%;
+        transition: .5s;
+        transform: translate(0,0);
+        &.hide{
+          transform: translate(0,-111%);
+        }
+        &.show{
+          transform: translate(0,0);
+        }
         .MuiButton-label {
           font-family: ProximaNova-Sbold;
         }
@@ -32,6 +47,7 @@
           border-radius: 20px;
           box-shadow: $box-shadow;
           padding: 5px 20px;
+          background-color: #fff;
           font-weight: bold;
         }
       }
@@ -39,7 +55,7 @@
       .image-container {
         padding: 10px 0;
         align-self: center;
-
+        margin-top: 55px;
         .details-image {
           width: 75%;
           display: block;

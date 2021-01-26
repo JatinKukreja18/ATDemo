@@ -13,15 +13,17 @@ import Header from "../../../components/header/header";
 import { DEFAULT, SERVICES } from '../../../router/routes.const';
 
 import BreadboardingImage from '../../../../assets/compressed/breadboarding.jpg';
-
+import throttle from '../../../utils/throttle';
 import './designEngineeringService.scss';
 
+let lastScrollPos = 0
 export default class DesignEngineeringServiceComponent extends Component {
 
   state = {
     title: '',
     subSectionIds: [],
-    scrollActive: false
+    scrollActive: false,
+    scrollDirection: 'down'
   };
 
   componentDidMount() {
@@ -29,7 +31,6 @@ export default class DesignEngineeringServiceComponent extends Component {
     let title = '';
     let focusId;
     let subSectionIds = [];
-    console.log(service);
     if (service) {
       let subSection;
       if (service.subList.length > 0) {
@@ -56,32 +57,41 @@ export default class DesignEngineeringServiceComponent extends Component {
         }, 500);
       }
     });
-    console.log(this.props.service);
-    // document.getElementById(this.props.service.id + '-content').addEventListener('scroll', this.scrollEventHandler);
+    document.getElementById(this.props.service.id + '-content').addEventListener('scroll', throttle(this.scrollEventHandler, 500));
   }
   scrollToTargetAdjusted = (id) => {
     var element = document.getElementById(id);
     var headerOffset = 180;
     var elementPosition = element.offsetTop
     var offsetPosition = (elementPosition - 80) - headerOffset;
-    console.log(offsetPosition);
     document.querySelector('#' + this.props.service.id + '-content').scrollTo({
       top: offsetPosition,
       behavior: "smooth"
     });
   }
   scrollEventHandler = (event) => {
+    console.log(event);
     const scrollActive = event.target.scrollTop > 50;
-    this.setState({ scrollActive: scrollActive })
+    if (event.target.scrollTop > lastScrollPos && this.state.scrollDirection !== 'down') {
+      console.log('down');
+      this.setState({ scrollDirection: 'down' });
+    } else if (event.target.scrollTop < lastScrollPos && this.state.scrollDirection !== 'up') {
+      this.setState({ scrollDirection: 'up' });
+      console.log('up');
+    }
+    lastScrollPos = event.target.scrollTop;
+    console.log(lastScrollPos);
+    if (!scrollActive) {
+      this.setState({ scrollActive: scrollActive });
+    }
   }
 
   scrollToTop = () => {
-    console.log(this.props.service);
-
     document.getElementById(this.props.service.id + '-content').scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   updateTitle = (highLightedEl) => {
+    console.log('here');
     const { service } = this.props;
     let title = highLightedEl ? highLightedEl.getAttribute("data-title") : service.displayText;
     this.setState({ title });
@@ -126,10 +136,10 @@ export default class DesignEngineeringServiceComponent extends Component {
     if (title) {
       return (
         <div className='service-details-container'>
-          {/* { this.getScrollSpy()} */}
+          {console.log('rerender')}
           <Header className='service-details-header' title={title} breadcrumbs={this.getBreadcrumbs()} rootEl={'#' + this.props.service.id + '-content'} />
           <Container className='details-content' >
-            <div className='back-button-container'>
+            <div className={`back-button-container ${this.state.scrollDirection === 'up' ? 'show' : 'hide'}`}>
               <Button className='back-button' startIcon={<KeyboardArrowLeftIcon className='am-icon' />} onClick={backButtonClickHandler.bind(this)}>
                 Back
               </Button>
@@ -156,7 +166,7 @@ export default class DesignEngineeringServiceComponent extends Component {
 
   componentWillUnmount() {
     console.log(this.props.service.id);
-    // document.getElementById(this.props.service.id + '-content').removeEventListener('scroll', this.scrollEventHandler);
+    document.getElementById(this.props.service.id + '-content').removeEventListener('scroll', this.scrollEventHandler);
   }
 }
 

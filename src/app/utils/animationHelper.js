@@ -32,3 +32,16 @@ export const getImageAnimation = (rect) => {
         transform: `translate(${parseInt(rect.left)}px, ${parseInt(rect.top)}px)`
     }
 }
+export const getUpTransition = () => {
+    return ({
+        from: {
+            position: 'absolute',
+            opacity: 0,
+            transform: 'translate(0%,20%) ',
+            transformOrigin: 'top',
+            overflow: 'hidden'
+        },
+        enter: { opacity: 1, transform: 'translate(0%,0) ', transformOrigin: 'top', overflow: 'auto' },
+        leave: { opacity: 0, transform: 'translate(0%,-10px) ', transformOrigin: 'top', overflow: 'hidden' }
+    })
+}

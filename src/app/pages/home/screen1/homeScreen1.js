@@ -22,7 +22,7 @@ export default class HomeScreen1Component extends Component {
   render() {
     const { changeActive, className } = this.props;
     const classes = className ? `${className} screen1-container` : 'screen1-container';
-    let delay = 3000;
+    let delay = 1200;
     if (window.sessionStorage.getItem('navigated')) {
       delay = 1200;
     }
@@ -31,7 +31,7 @@ export default class HomeScreen1Component extends Component {
         {/* <div className='screen1-bg-image' /> */}
         <div className='screen1-backdrop'>
           <Spring
-            config={{ duration: 800, delay: delay }}
+            config={{ duration: 500, delay: delay }}
             from={{ opacity: 0 }}
             to={{ opacity: 1 }}>
             {props =>
