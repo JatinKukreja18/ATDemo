@@ -23,7 +23,7 @@ export default class DesignEngineeringServiceComponent extends Component {
     title: '',
     subSectionIds: [],
     scrollActive: false,
-    scrollDirection: 'down'
+    scrollDirection: 'up'
   };
 
   componentDidMount() {
@@ -136,7 +136,6 @@ export default class DesignEngineeringServiceComponent extends Component {
     if (title) {
       return (
         <div className='service-details-container'>
-          {console.log('rerender')}
           <Header className='service-details-header' title={title} breadcrumbs={this.getBreadcrumbs()} rootEl={'#' + this.props.service.id + '-content'} />
           <Container className='details-content' >
             <div className={`back-button-container ${this.state.scrollDirection === 'up' ? 'show' : 'hide'}`}>

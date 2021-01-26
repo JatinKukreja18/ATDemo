@@ -25,7 +25,7 @@
         background-color: #fff;
         z-index: 5;
         overflow: auto;
-        height: 100vh;
+        height: calc(100 * var(--vh));
         // margin-left: $menu-width;
         .content{
           margin-left:0 ;
@@ -50,13 +50,32 @@
       >.content {
         overflow-y: hidden;
       }
+      .am-modal-page{
+        position: fixed;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: #fff;
+        z-index: 5;
+        left: 0%;
+        width: 100%;
+        background-color: #fff;
+        z-index: 5;
+        overflow: auto;
+        height: calc(100 * var(--vh) - 80px);
+        // margin-left: $menu-width;
+        .content{
+          padding: 0;
+          margin: 0;
+        }
+      }
       .content {
         height: 100%;
         margin-top: 8px;
         padding-top: 6px;
       }
       @include mobile {
-        .content{
+        >.content{
           padding-top: 0;
           margin-top: 80px;
           position: relative;

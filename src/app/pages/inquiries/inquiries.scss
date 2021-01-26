@@ -76,6 +76,11 @@
     }
 
   }
+  @include tablet{
+   .inquiries-container .inquiries-paper{
+      width: 80%;
+    }
+  }
   @include mobile{
     .inquiries-container{
       justify-content: center;

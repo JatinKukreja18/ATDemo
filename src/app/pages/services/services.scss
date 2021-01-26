@@ -84,7 +84,7 @@
               opacity: 1;
               z-index: 2;
               // animation: slide-in .5s ease-in-out;
-              margin-left: -325px;
+              margin-left: calc(-325px - 4%);
               &:first-of-type{
                 margin-left: -500px;
               }
@@ -105,7 +105,7 @@
             }
   
             &.old {
-              margin-left: -325px;
+              margin-left: calc(-325px - 4%);
               // animation: slide-out .5s ease-in-out;
               z-index: 1;  
               // margin-bottom: -30px;
@@ -162,7 +162,7 @@
               transition: transform 0.3s ease-out 0.3s, 0s opacity 0s ease;
               &:not(:first-of-type){
 
-                margin-left: -325px;
+                margin-left: calc(-325px - 4%);
               }
               // animation: left-focus .5s ease-in-out;
 
@@ -183,7 +183,7 @@
             }
   
             &.old {
-              margin-left: -325px;
+              margin-left: calc(-325px - 4%);
               opacity: 0.3;
               transform: translateY(20px);
               // animation: left-focus .5s ease-in-out;
@@ -253,38 +253,74 @@
 
   @include tablet {
     .services-container {
+      display: block;
+      min-height: calc(100 * var(--vh) );
+      height: calc(100 * var(--vh)) !important;
       flex-direction: column;
       height: auto;
+      // padding: 0 1rem;
+      overflow: auto;
       .second-section {
         .carousel-item-container {
           padding: 5%;
           padding-left: 0px;
-
           .carousel-item {
-            &.right {    
-              &.new {
-                margin-left: 300px;
-              }
+            margin: 0 4%;
+            transition: all .5s ease-in-out;
   
-              &.active {
-                margin-left: 0px;
+            &.new {
+              pointer-events: none;
+              .am-card {
+                .am-card-content {
+                  .list {
+                    display: none;
+                  }
+                }
+              }
+            }
     
+            &.right {
+              &.new {
+                transform: scale(0.8);
+                opacity: 0.8;
+              }
+      
+              &.active {
+                transform: scale(1);
+                opacity: 1;
+                z-index: 2;
+                // animation: slide-in .5s ease-in-out;
+                margin-left: calc(-325px - 4%);
+                &:first-of-type{
+                  margin-left: 0;
+                }
                 @keyframes slide-in {
                   0% {
-                    margin-left: 300px;
+                    margin-left: 0;
                   }
       
                   100% {
-                    margin-left: 0px;
+                    margin-left: -300px;
                   }
                   
                 }
               }
-          
+      
+              &.hidden {
+                display: none;
+              }
+    
               &.old {
-                margin-left: 0px;
+                margin-left: calc(-325px - 4%);
+                // animation: slide-out .5s ease-in-out;
                 z-index: 1;  
-                
+                // margin-bottom: -30px;
+                transform: translateY(20px);
+                opacity: .3;
+                transition-delay: .3s;
+                &:first-of-type{
+                  margin-left: 0;
+                }
                 @keyframes slide-out {
                   0% {
                     z-index: 2;
@@ -302,63 +338,139 @@
               &.new {
                 transform: scale(0.8);
                 opacity: 0.8;
-                animation: left-slide-out .5s ease-in-out;
-                margin-left: 300px;
+                z-index: 2;
                 
-                @keyframes left-slide-out {
-                  0% {
-                    opacity: 1;
-                    transform: scale(1);
-                    margin-left: 0px;
-                  }
-      
-                  100% {
-                    opacity: 0.8;
-                    transform: scale(0.8);
-                    margin-left: 300px;
-                  }
-                  
-                }
               }
       
               &.active {
                 transform: scale(1);
                 opacity: 1;
                 z-index: 2;
-                margin-left: 0px;
-                animation: left-focus .5s ease-in-out;
+                margin-left:0 ;
+                -webkit-transition: transform 0.3s ease-out 0.3s, 0s opacity 0s ease;
+                -moz-transition: transform 0.3s ease-out 0.3s, 0s opacity 0s ease;
+                -o-transition: transform 0.3s ease-out 0.3s, 0s opacity 0s ease;
+                transition: transform 0.3s ease-out 0.3s, 0s opacity 0s ease;
+                &:not(:first-of-type){
   
-                @keyframes left-focus {
-                  0% {
-                    opacity: 0;
-                  }
-      
-                  100% {
-                    opacity: 1;
-                  }
-                  
+                  margin-left: calc(-325px - 4%);
                 }
+              }
+      
+              &.hidden {
+                display: none;
               }
     
               &.old {
-                margin-left: 0px;
-                opacity: 0;
-                animation: left-focus .5s ease-in-out;
-                
-                @keyframes left-focus {
-                  0% {
-                    opacity: 0;
-                  }
-      
-                  100% {
-                    opacity: 1;
-                  }
-                  
+                margin-left: calc(-325px - 4%);
+                opacity: 0.3;
+                transform: translateY(20px);
+                &:first-of-type{
+                  margin-left: -0px;
                 }
               }
             }  
   
           }
+          // .carousel-item {
+          //   &.right {    
+          //     &.new {
+          //       margin-left: 300px;
+          //     }
+  
+          //     &.active {
+          //       margin-left: 0px;
+    
+          //       @keyframes slide-in {
+          //         0% {
+          //           margin-left: 300px;
+          //         }
+      
+          //         100% {
+          //           margin-left: 0px;
+          //         }
+                  
+          //       }
+          //     }
+          
+          //     &.old {
+          //       margin-left: 0px;
+          //       z-index: 1;  
+                
+          //       @keyframes slide-out {
+          //         0% {
+          //           z-index: 2;
+          //         }
+      
+          //         100% {
+          //           z-index: 1;
+          //         }
+                  
+          //       }
+          //     }
+          //   }
+  
+          //   &.left {
+          //     &.new {
+          //       transform: scale(0.8);
+          //       opacity: 0.8;
+          //       animation: left-slide-out .5s ease-in-out;
+          //       margin-left: 300px;
+                
+          //       @keyframes left-slide-out {
+          //         0% {
+          //           opacity: 1;
+          //           transform: scale(1);
+          //           margin-left: 0px;
+          //         }
+      
+          //         100% {
+          //           opacity: 0.8;
+          //           transform: scale(0.8);
+          //           margin-left: 300px;
+          //         }
+                  
+          //       }
+          //     }
+      
+          //     &.active {
+          //       transform: scale(1);
+          //       opacity: 1;
+          //       z-index: 2;
+          //       margin-left: 0px;
+          //       animation: left-focus .5s ease-in-out;
+  
+          //       @keyframes left-focus {
+          //         0% {
+          //           opacity: 0;
+          //         }
+      
+          //         100% {
+          //           opacity: 1;
+          //         }
+                  
+          //       }
+          //     }
+    
+          //     &.old {
+          //       margin-left: 0px;
+          //       opacity: 0;
+          //       animation: left-focus .5s ease-in-out;
+                
+          //       @keyframes left-focus {
+          //         0% {
+          //           opacity: 0;
+          //         }
+      
+          //         100% {
+          //           opacity: 1;
+          //         }
+                  
+          //       }
+          //     }
+          //   }  
+  
+          // }
         }     
       }
 

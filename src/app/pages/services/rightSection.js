@@ -13,7 +13,7 @@ import { SERVICE_LIST } from "./services.const";
 import { CAROUSEL_CONFIG } from "../../App.const";
 import { Spring, Transition, animated } from 'react-spring/renderprops'
 import * as easings from 'd3-ease'
-import { initialAnimationState, finalAnimationState } from '../../utils/animationHelper';
+import { initialAnimationState, finalAnimationStateMobile, initialAnimationStateMobile, finalAnimationState } from '../../utils/animationHelper';
 
 import "./services.scss";
 
@@ -47,7 +47,8 @@ class RightSectionComponent extends Component {
         borderRadius: 12,
         overflow: 'hidden'
       },
-      toAnimation: finalAnimationState()
+      toAnimation: finalAnimationState(),
+      toAnimationMobile: finalAnimationStateMobile()
     };
   }
 
@@ -73,8 +74,16 @@ class RightSectionComponent extends Component {
   onAnimationEnd = (event) => {
     event.target.classList.add("hidden");
   }
-
+  mobileSlideChange = (v) => {
+    console.log(v);
+    console.log(this.state.currentCard);
+    this.setState({
+      currentCard: v,
+      direction: this.state.currentCard < v ? DIRECTIONS.LEFT : DIRECTIONS.RIGHT
+    });
+  }
   onPrevClickHandler = () => {
+
     this.setState({
       currentCard: this.state.currentCard === 0 ? 0 : this.state.currentCard - 1,
       direction: DIRECTIONS.LEFT
@@ -100,23 +109,33 @@ class RightSectionComponent extends Component {
     // });
     console.log(index);
     const rect = document.querySelector('#c-item-' + index).getBoundingClientRect();
-    this.setState({
-      fromAnimation: initialAnimationState(rect),
-    }, () => {
-      console.log(this.state.fromAnimation);
-      this.props.history.push(this.props.match.path + '/' + serviceId + '#' + subId);
-    })
+    if (this.props.isMobile) {
+      this.setState({
+        fromAnimation: initialAnimationStateMobile(rect, document.querySelector('.services-container').scrollTop),
+      }, () => {
+        console.log(document.querySelector('.services-container').scrollTop);
+        console.log(this.state.fromAnimation);
+        this.props.history.push(this.props.match.path + '/' + serviceId + '#' + subId);
+      })
+    } else {
+      this.setState({
+        fromAnimation: initialAnimationState(rect),
+      }, () => {
+        console.log(this.state.fromAnimation);
+        this.props.history.push(this.props.match.path + '/' + serviceId + '#' + subId);
+      })
+    }
   }
 
   renderMobileView = () => {
     return (
       <div className='second-section'>
-        <Carousel {...CAROUSEL_CONFIG}>
+        <Carousel {...CAROUSEL_CONFIG} onChange={this.mobileSlideChange}>
           {
             SERVICE_LIST.map((item, i) => {
               return (
-                <div key={i} className={`carousel-item`}>
-                  <Card item={item} linkClickHandler={this.linkClickHandler} />
+                <div key={i} id={`c-item-${i}`} className={`carousel-item`}>
+                  <Card item={item} linkClickHandler={this.linkClickHandler} index={i} />
                 </div>
               );
             })
@@ -181,8 +200,8 @@ class RightSectionComponent extends Component {
   }
   render() {
     const { isMobile, location } = this.props;
-    const { detailsOpen, serviceId, subId, fromAnimation, toAnimation, currentCard } = this.state;
-    const calculatedAnimation = { from: fromAnimation, to: toAnimation }
+    const { detailsOpen, serviceId, subId, fromAnimation, toAnimation, toAnimationMobile, currentCard } = this.state;
+    const calculatedAnimation = { from: fromAnimation, to: isMobile ? toAnimationMobile : toAnimation }
     console.log(calculatedAnimation);
     return (
       <>

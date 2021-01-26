@@ -21,7 +21,30 @@ export const initialAnimationState = (rect) => {
         overflow: 'hidden'
     }
 };
+export const initialAnimationStateMobile = (rect, offset) => {
+    if (!rect)
+        return {};
 
+    return {
+        height: `calc(0vh + ${rect.height}px)`,
+        width: `calc(0% + ${rect.width}px)`,
+        left: `${rect.left}px`,
+        top: `${rect.top}px`,
+        background: 'rgba(0, 0, 0, 0.7)',
+        borderRadius: 22,
+        overflow: 'hidden'
+    }
+}
+export const finalAnimationStateMobile = () => (
+    {
+        height: "calc(100vh + 0px)",
+        width: "calc(100% + 0px)",
+        left: '0px',
+        top: '0px',
+        borderRadius: 0,
+        background: 'rgba(255, 255, 255, 1)',
+        overflow: 'auto'
+    })
 export const getImageAnimation = (rect) => {
     if (!rect)
         return {};
