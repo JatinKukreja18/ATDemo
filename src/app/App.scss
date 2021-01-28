@@ -1,4 +1,11 @@
+
 @import '../styles/const.scss';
+@import '../styles/mixins.scss';
+@include mobile-small{
+    html{
+    font-size: 15px;
+  }
+}
 .MuiDialog-paperFullScreen{
   background-color: transparent !important;
 }

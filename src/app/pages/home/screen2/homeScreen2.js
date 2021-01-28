@@ -11,7 +11,7 @@ export default class HomeScreen2Component extends Component {
     const { className } = this.props;
     const classes = className ? `${className} screen2-container` : 'screen2-container';
     return (
-      <div className= {classes}>
+      <div className={classes}>
         <div className='section'>
           <div className='sub-section'>
             <div className='text-section'>
@@ -19,7 +19,7 @@ export default class HomeScreen2Component extends Component {
                 Who is AM Tech
               </div>
               <div className='text'>
-                AM Tech was founded in 2017 by Andrew March. 
+                AM Tech was founded in 2017 by Andrew March.
                 We are a tight-knit team of engineers with expertise ranging from hardware, to firmware, to software design.
               </div>
             </div>
@@ -35,24 +35,24 @@ export default class HomeScreen2Component extends Component {
             <Paper elevation={3} className='operations-img'>
             </Paper>
           </div>
-            <div className='sub-section'>
-              <div className='text-section'>
-                <div className='heading'>
-                  AM Tech’s Mission Statement:
+          <div className='sub-section'>
+            <div className='text-section'>
+              <div className='heading'>
+                AM Tech’s Mission Statement:
                 </div>
-                <div className='text'>
-                  <div className="list-item">
-                    <img src={BulletIcon} alt='bullet' className='bullet-img' />
-                    <span className='list-item-text'>Build products that people will use and will improve lives</span>
-                  </div>
-                  <div className="list-item">
-                    <img src={BulletIcon} alt='bullet' className='bullet-img' />
-                    <span className='list-item-text'>Bring success to any organization that we work with</span>
-                  </div>
+              <div className='text'>
+                <div className="list-item">
+                  <img src={BulletIcon} alt='bullet' className='bullet-img' />
+                  <span className='list-item-text'>Build products that people will use and will improve lives</span>
+                </div>
+                <div className="list-item">
+                  <img src={BulletIcon} alt='bullet' className='bullet-img' />
+                  <span className='list-item-text'>Bring success to any organization that we work with</span>
                 </div>
               </div>
             </div>
           </div>
+        </div>
         <div className='section social-media'>
           <div className='sub-section'>
             <div className='text-section sm-container'>

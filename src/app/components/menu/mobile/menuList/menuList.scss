@@ -12,14 +12,16 @@
       align-items: center;
       justify-content: center;
       z-index: 1101; // 1 more than Appbar    
-  
+      height: 100vh;
+      top: 80px;
+      align-items: flex-start;
       .menu-list-paper {
         background-color: rgba(0, 0, 0, 0.7);
         border-radius: 40px;
         padding: 10px;
         border: solid 0.5px $white;
-  
-        .menu-item {
+        margin-top: 20px;
+        .menu-item {  
           margin: 0 8px;
           background-color: rgba(0, 0, 0, 0.8);
           color: $white;

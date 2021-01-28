@@ -23,8 +23,6 @@ export default class VerticalCarousel extends React.Component {
 		if (newActiveId !== activeID) {
 			this.changeActive(newActiveId);
 			const element = document.getElementById(`panel-${newActiveId}`);
-			// doScrollDebPage(element, direction);
-			console.log(direction);
 			this.animateSlides(direction)
 		}
 	}
@@ -32,7 +30,7 @@ export default class VerticalCarousel extends React.Component {
 		if (direction > 0) {
 			document.querySelector(`#panel-0`).classList.add('up');
 			document.querySelector(`#panel-1`).classList.add('up');
-		} else if (direction < 0) {
+		} else if (direction < 0 && document.querySelector('.panel-item:last-of-type > div').scrollTop == 0) {
 			document.querySelector(`#panel-0`).classList.remove('up');
 			document.querySelector(`#panel-1`).classList.remove('up');
 		}

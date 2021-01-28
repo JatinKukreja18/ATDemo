@@ -6,11 +6,12 @@ import { Spring, config } from 'react-spring/renderprops'
 
 import "./homeScreen1.scss";
 
+let lastTouchPoint = 0;
 export default class HomeScreen1Component extends Component {
 
   updateSpotlight = (e) => {
     const spotlight = document.querySelector('.screen1-backdrop');
-    let spotlightSize = 'transparent 160px, rgba(0, 0, 0, 0.5) 200px)';
+    let spotlightSize = 'transparent 100px, rgba(0, 0, 0, 0.5) 150px)';
     const conatinerWidth = .75 * window.innerWidth;
     if (e.pageX) {
       const offsetX = ((e.pageX - (.25 * window.innerWidth)) / (conatinerWidth)) * 100;
@@ -18,9 +19,14 @@ export default class HomeScreen1Component extends Component {
       console.log(conatinerWidth);
       console.log(offsetX + '%');
       spotlight.style.backgroundImage = `radial-gradient(circle at ${offsetX}% ${e.pageY / spotlight.offsetHeight * 100}%, ${spotlightSize}`;
-    } else if (e.touches[0].clientX) {
-      const offsetX = ((e.touches[0].clientX - (.25 * window.innerWidth)) / (conatinerWidth)) * 100;
-      spotlight.style.backgroundImage = `radial-gradient(circle at ${offsetX}% ${e.touches[0].clientY / spotlight.offsetHeight * 100}%, ${spotlightSize}`;
+    }
+    else if (e.touches[0].clientX) {
+      if (lastTouchPoint < e.touches[0].clientX) {
+        console.log('load next');
+      }
+      lastTouchPoint = e.touches[0].clientX
+      // const offsetX = ((e.touches[0].clientX - (.25 * window.innerWidth)) / (conatinerWidth)) * 100;
+      // spotlight.style.backgroundImage = `radial-gradient(circle at ${offsetX}% ${e.touches[0].clientY / spotlight.offsetHeight * 100}%, ${spotlightSize}`;
     }
   }
 

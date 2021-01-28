@@ -59,12 +59,17 @@
         transition: .5s;
         
         &.up{
-          transform: translateY(-100%);
+          transform: translateY(calc(-100 * var(--vh) + 80px));
         }
       }
       @include mobile {
         >.panel-item{
           min-height: calc(100 * var(--vh) - 80px);
+          height: calc(100 * var(--vh) - 80px);
+          &:last-of-type{
+            // height: auto;
+            overflow: auto;
+          }
         }
       }
       .screen {

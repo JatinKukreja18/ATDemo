@@ -1,3 +1,14 @@
+@mixin mobile-small {
+  /* 
+    ##Device = Low Resolution Tablets, Mobiles (Landscape)
+    ##Screen = B/w 481px to 767px
+  */
+
+  @media (min-width: 320px) and (max-width: 475px) {
+    @content;
+  }
+}
+
 @mixin mobile {
   /* 
     ##Device = Low Resolution Tablets, Mobiles (Landscape)

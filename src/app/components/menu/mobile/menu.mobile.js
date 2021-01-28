@@ -44,7 +44,7 @@ class MobileMenuComponent extends BaseComponent {
         </AppBar>
         {
           menuOpen ? (
-            <MobileMenuListComponent selected={selected} setSelectedMenu={this.setSelectedMenu} />
+            <MobileMenuListComponent close={this.hideMenu} selected={selected} setSelectedMenu={this.setSelectedMenu} />
           ) : null
         }
       </>
