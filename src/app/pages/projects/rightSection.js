@@ -59,11 +59,9 @@ class ProjectRightSectionComponent extends Component {
     // this.setState({
     //   detailsOpen: false
     // });
-    console.log(this.subId);
     this.setState({
       fromAnimation: finalAnimationState,
     }, () => {
-      console.log(this.state.fromAnimation);
       this.props.history.push('/projects');
     })
   }
@@ -72,8 +70,6 @@ class ProjectRightSectionComponent extends Component {
     event.target.classList.add("hidden");
   }
   mobileSlideChange = (v) => {
-    console.log(v);
-    console.log(this.state.currentCard);
     this.setState({
       currentCard: v,
       direction: this.state.currentCard < v ? DIRECTIONS.LEFT : DIRECTIONS.RIGHT
@@ -99,23 +95,18 @@ class ProjectRightSectionComponent extends Component {
     //   projectId: projectId,
     //   subId: subId ? subId : ''
     // }, () => {
-    //   this.openDialog();
     // });
-    console.log(index);
     const rect = document.querySelector('#c-item-' + index).getBoundingClientRect();
     if (this.props.isMobile) {
       this.setState({
         fromAnimation: initialAnimationStateMobile(rect, document.querySelector('.projects-container').scrollTop),
       }, () => {
-        console.log(document.querySelector('.projects-container').scrollTop);
-        console.log(this.state.fromAnimation);
         this.props.history.push(this.props.match.path + '/' + projectId + '#' + subId);
       })
     } else {
       this.setState({
         fromAnimation: initialAnimationState(rect),
       }, () => {
-        console.log(this.state.fromAnimation);
         this.props.history.push(this.props.match.path + '/' + projectId + '#' + subId);
       })
     }
@@ -221,7 +212,6 @@ class ProjectRightSectionComponent extends Component {
     const { detailsOpen, projectId, subId, fromAnimation, toAnimationMobile, toAnimation, currentCard } = this.state;
     const calculatedAnimation = { from: fromAnimation, to: isMobile ? toAnimationMobile : toAnimation }
 
-    console.log(calculatedAnimation);
     // return (
     //   <>
     //   {isMobile ? this.renderMobileView() : this.renderDesktopView()}
@@ -239,7 +229,6 @@ class ProjectRightSectionComponent extends Component {
     return (
       <>
         {isMobile ? this.renderMobileView() : this.renderDesktopView()}
-        {console.log('here')}
 
         <Switch>
           {PROJECT_LIST.map((item, i) => {

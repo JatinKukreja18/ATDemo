@@ -30,13 +30,13 @@ export default class IndustrialSolutionsServiceComponent extends Component {
   }
 
   render() {
-    const { service, backButtonClickHandler } = this.props;
+    const { service, backButtonClickHandler, scrollDirection } = this.props;
     if (service) {
       return (
         <div className='service-details-container'>
           <Header className='service-details-header' title={service.displayText} breadcrumbs={this.getBreadcrumbs()} rootEl='#service-details-dialog-content' />
           <Container className='details-content'>
-            <div className='back-button-container'>
+            <div className={`back-button-container ${scrollDirection === 'up' ? 'show' : 'hide'}`}>
               <Button className='back-button' startIcon={<KeyboardArrowLeftIcon className='am-icon' />} onClick={backButtonClickHandler.bind(this)}>
                 Back
               </Button>

@@ -8,11 +8,22 @@ import { Spring, animated } from 'react-spring/renderprops'
 import { initialAnimationState, initialAnimationStateMobile, finalAnimationStateMobile, finalAnimationState } from '../../utils/animationHelper';
 
 import './projectDetail.scss';
+import throttle from '../../utils/throttle';
+
+let lastScrollPos = 0
 
 class ProjectDetailsIndexComponent extends Component {
 
   state = {
-    project: undefined
+    project: undefined,
+    showPage: false,
+    reverseAnimation: false,
+    reversePosition: {
+      from: {},
+      to: {}
+    },
+    scrollDirection: 'up',
+    scrollActive: false
   };
 
   componentDidMount() {
@@ -33,7 +44,23 @@ class ProjectDetailsIndexComponent extends Component {
   animationEnds = (props) => {
     console.log(props);
     if (!this.state.reverseAnimation) {
-      this.setState({ showPage: !this.state.showPage })
+      this.setState({ showPage: !this.state.showPage });
+      console.log(this.state.project.id);
+      document.getElementById(this.state.project.id + '-content').addEventListener('scroll', throttle(this.scrollEventHandler, 500));
+    } else {
+      document.getElementById(this.state.project.id + '-content').removeEventListener('scroll');
+    }
+  }
+  scrollEventHandler = (event) => {
+    const scrollActive = event.target.scrollTop > 50;
+    if (event.target.scrollTop > lastScrollPos && this.state.scrollDirection !== 'down') {
+      this.setState({ scrollDirection: 'down' });
+    } else if (event.target.scrollTop < lastScrollPos && this.state.scrollDirection !== 'up') {
+      this.setState({ scrollDirection: 'up' });
+    }
+    lastScrollPos = event.target.scrollTop;
+    if (!scrollActive) {
+      this.setState({ scrollActive: scrollActive });
     }
   }
   backButtonClickHandler = () => {
@@ -41,7 +68,7 @@ class ProjectDetailsIndexComponent extends Component {
     let rect;
     let t;
     if (this.props.isMobile) {
-      console.log(this.props.currentCard);
+
       f = finalAnimationStateMobile();
       rect = document.querySelector('#c-item-' + this.props.currentCard).getBoundingClientRect();
       t = initialAnimationStateMobile(rect);
@@ -53,7 +80,7 @@ class ProjectDetailsIndexComponent extends Component {
     }
 
     this.setState({ showPage: !this.state.showPage, reverseAnimation: true, reversePosition: { from: f, to: t } }, () => {
-      console.log('backing');
+
       setTimeout(() => {
 
         this.props.history.push('/projects')
@@ -63,11 +90,10 @@ class ProjectDetailsIndexComponent extends Component {
   }
 
   renderDesktopView = () => {
-    const { project, reverseAnimation, reversePosition } = this.state;
+    const { project, reverseAnimation, reversePosition, scrollDirection } = this.state;
     const { isMobile, subId, location, animation } = this.props;
     const DetailComponent = project.detailsComponent;
     // const subId = location.hash.substring(1);
-    console.log(subId);
     if (animation) {
       return (
         <>
@@ -78,7 +104,7 @@ class ProjectDetailsIndexComponent extends Component {
               {props =>
                 <div className=' am-modal-page' id={project.id + '-content'}>
                   <div className='content' style={{ opacity: props.opacity, height: 'auto' }}>
-                    <DetailComponent project={project} isMobile={isMobile} backButtonClickHandler={this.backButtonClickHandler} subId={subId} />
+                    <DetailComponent scrollDirection={scrollDirection} project={project} isMobile={isMobile} backButtonClickHandler={this.backButtonClickHandler} subId={subId} />
                   </div>
                 </div>}
             </Spring>
@@ -114,10 +140,9 @@ class ProjectDetailsIndexComponent extends Component {
   }
 
   renderMobileView = () => {
-    const { project, reverseAnimation, reversePosition } = this.state;
+    const { project, reverseAnimation, reversePosition, scrollDirection } = this.state;
     const { isMobile, style, location, animation } = this.props;
     const DetailComponent = project.detailsComponent;
-    console.log(animation);
     const subId = location.hash.substring(1);
     if (animation) {
       return (
@@ -129,7 +154,7 @@ class ProjectDetailsIndexComponent extends Component {
               {props =>
                 <div className=' am-modal-page' id={project.id + '-content'}>
                   <div className='content' style={{ opacity: props.opacity, height: 'auto' }}>
-                    <DetailComponent project={project} isMobile={isMobile} backButtonClickHandler={this.backButtonClickHandler} subId={subId} />
+                    <DetailComponent scrollDirection={scrollDirection} project={project} isMobile={isMobile} backButtonClickHandler={this.backButtonClickHandler} subId={subId} />
                   </div>
                 </div>}
             </Spring>
@@ -157,9 +182,6 @@ class ProjectDetailsIndexComponent extends Component {
   render() {
     const { project } = this.state;
     const { isMobile } = this.props;
-    console.log('here too');
-    console.log(project);
-    console.log(isMobile);
     if (project) {
       return (
         <>

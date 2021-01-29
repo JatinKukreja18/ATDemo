@@ -22,8 +22,7 @@ export default class DesignEngineeringServiceComponent extends Component {
   state = {
     title: '',
     subSectionIds: [],
-    scrollActive: false,
-    scrollDirection: 'up'
+    scrollActive: false
   };
 
   componentDidMount() {
@@ -63,24 +62,20 @@ export default class DesignEngineeringServiceComponent extends Component {
     var element = document.getElementById(id);
     var headerOffset = 180;
     var elementPosition = element.offsetTop
-    var offsetPosition = (elementPosition - 80) - headerOffset;
+    var offsetPosition = (elementPosition - 80);
     document.querySelector('#' + this.props.service.id + '-content').scrollTo({
       top: offsetPosition,
       behavior: "smooth"
     });
   }
   scrollEventHandler = (event) => {
-    console.log(event);
     const scrollActive = event.target.scrollTop > 50;
-    if (event.target.scrollTop > lastScrollPos && this.state.scrollDirection !== 'down') {
-      console.log('down');
-      this.setState({ scrollDirection: 'down' });
-    } else if (event.target.scrollTop < lastScrollPos && this.state.scrollDirection !== 'up') {
-      this.setState({ scrollDirection: 'up' });
-      console.log('up');
-    }
-    lastScrollPos = event.target.scrollTop;
-    console.log(lastScrollPos);
+    // if (event.target.scrollTop > lastScrollPos && this.state.scrollDirection !== 'down') {
+    //   this.setState({ scrollDirection: 'down' });
+    // } else if (event.target.scrollTop < lastScrollPos && this.state.scrollDirection !== 'up') {
+    //   this.setState({ scrollDirection: 'up' });
+    // }
+    // lastScrollPos = event.target.scrollTop;
     if (!scrollActive) {
       this.setState({ scrollActive: scrollActive });
     }
@@ -93,14 +88,16 @@ export default class DesignEngineeringServiceComponent extends Component {
   updateTitle = (highLightedEl) => {
     console.log('here');
     const { service } = this.props;
-    let title = highLightedEl ? highLightedEl.getAttribute("data-title") : service.displayText;
+    let title = highLightedEl && highLightedEl.getAttribute("data-title") ? highLightedEl.getAttribute("data-title") : service.displayText;
     this.setState({ title });
   }
 
   getScrollSpy = () => {
-    const { subSectionIds } = this.state;
+    let { subSectionIds } = this.state;
     const offset = -50 - (window.innerHeight / 2);
     // This scroll spy will help us identify the scroll position and update the title accordingly
+    subSectionIds = ['first-section-trigger', ...subSectionIds]
+    console.log(subSectionIds);
     return (
       <Scrollspy items={subSectionIds} style={{ display: 'none' }} currentClassName='abc' rootEl={'#' + this.props.service.id + '-content'} onUpdate={this.updateTitle} offset={offset}>
         {
@@ -136,9 +133,10 @@ export default class DesignEngineeringServiceComponent extends Component {
     if (title) {
       return (
         <div className='service-details-container'>
+          { this.getScrollSpy()}
           <Header className='service-details-header' title={title} breadcrumbs={this.getBreadcrumbs()} rootEl={'#' + this.props.service.id + '-content'} />
           <Container className='details-content' >
-            <div className={`back-button-container ${this.state.scrollDirection === 'up' ? 'show' : 'hide'}`}>
+            <div className={`back-button-container ${this.props.scrollDirection === 'up' ? 'show' : 'hide'}`}>
               <Button className='back-button' startIcon={<KeyboardArrowLeftIcon className='am-icon' />} onClick={backButtonClickHandler.bind(this)}>
                 Back
               </Button>
@@ -146,6 +144,7 @@ export default class DesignEngineeringServiceComponent extends Component {
             <div className='image-container'>
               <img alt={service.displayText} src={BreadboardingImage} className='details-image' />
             </div>
+            <div id="first-section-trigger" style={{ height: '1px', width: '100%' }}></div>
             {
               service.subList.map((subItem) => {
                 const SubSectionComponent = subItem.component;

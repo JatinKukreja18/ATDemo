@@ -9,6 +9,9 @@ import { Spring, animated } from 'react-spring/renderprops'
 
 import { initialAnimationState, finalAnimationState, finalAnimationStateMobile, initialAnimationStateMobile } from '../../utils/animationHelper';
 import './serviceDetail.scss';
+import throttle from '../../utils/throttle';
+
+let lastScrollPos = 0
 
 class ServiceDetailsIndexComponent extends Component {
 
@@ -19,7 +22,9 @@ class ServiceDetailsIndexComponent extends Component {
     reversePosition: {
       from: {},
       to: {}
-    }
+    },
+    scrollDirection: 'up',
+    scrollActive: false
   };
 
   componentDidMount() {
@@ -36,9 +41,19 @@ class ServiceDetailsIndexComponent extends Component {
     this.setState({
       service: service
     });
-
   }
-
+  scrollEventHandler = (event) => {
+    const scrollActive = event.target.scrollTop > 50;
+    if (event.target.scrollTop > lastScrollPos && this.state.scrollDirection !== 'down') {
+      this.setState({ scrollDirection: 'down' });
+    } else if (event.target.scrollTop < lastScrollPos && this.state.scrollDirection !== 'up') {
+      this.setState({ scrollDirection: 'up' });
+    }
+    lastScrollPos = event.target.scrollTop;
+    if (!scrollActive) {
+      this.setState({ scrollActive: scrollActive });
+    }
+  }
   backButtonClickHandler = () => {
     let f;
     let rect;
@@ -67,12 +82,16 @@ class ServiceDetailsIndexComponent extends Component {
   animationEnds = (props) => {
     console.log(props);
     if (!this.state.reverseAnimation) {
-      this.setState({ showPage: !this.state.showPage })
+      this.setState({ showPage: !this.state.showPage });
+      console.log(this.state.service.id);
+      document.getElementById(this.state.service.id + '-content').addEventListener('scroll', throttle(this.scrollEventHandler, 500));
+    } else {
+      document.getElementById(this.state.service.id + '-content').removeEventListener('scroll');
     }
   }
 
   renderDesktopView = () => {
-    const { service, reverseAnimation, reversePosition } = this.state;
+    const { service, reverseAnimation, reversePosition, scrollDirection } = this.state;
     const { isMobile, style, location, animation } = this.props;
     const DetailComponent = service.detailsComponent;
     console.log(animation);
@@ -87,7 +106,7 @@ class ServiceDetailsIndexComponent extends Component {
               {props =>
                 <div className=' am-modal-page' id={service.id + '-content'}>
                   <div className='content' style={{ opacity: props.opacity, height: 'auto' }}>
-                    <DetailComponent service={service} isMobile={isMobile} backButtonClickHandler={this.backButtonClickHandler} subId={subId} />
+                    <DetailComponent scrollDirection={scrollDirection} service={service} isMobile={isMobile} backButtonClickHandler={this.backButtonClickHandler} subId={subId} />
                   </div>
                 </div>}
             </Spring>
@@ -116,7 +135,7 @@ class ServiceDetailsIndexComponent extends Component {
   }
 
   renderMobileView = () => {
-    const { service, reverseAnimation, reversePosition } = this.state;
+    const { service, reverseAnimation, reversePosition, scrollDirection } = this.state;
     const { isMobile, style, location, animation } = this.props;
     const DetailComponent = service.detailsComponent;
     console.log(animation);
@@ -131,7 +150,7 @@ class ServiceDetailsIndexComponent extends Component {
               {props =>
                 <div className=' am-modal-page' id={service.id + '-content'}>
                   <div className='content' style={{ opacity: props.opacity, height: 'auto' }}>
-                    <DetailComponent service={service} isMobile={isMobile} backButtonClickHandler={this.backButtonClickHandler} subId={subId} />
+                    <DetailComponent scrollDirection={scrollDirection} service={service} isMobile={isMobile} backButtonClickHandler={this.backButtonClickHandler} subId={subId} />
                   </div>
                 </div>}
             </Spring>

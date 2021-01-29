@@ -28,13 +28,13 @@ export default class MidiControlledReactiveLightingComponent extends Component {
   }
 
   render() {
-    const { project, backButtonClickHandler } = this.props;
+    const { project, backButtonClickHandler, scrollDirection } = this.props;
     if (project) {
       return (
         <div className='project-details-container'>
           <Header className='project-details-header' title={project.displayText} breadcrumbs={this.getBreadcrumbs()} rootEl={'#' + project.id + '-content'} />
           <Container className='details-content'>
-            <div className='back-button-container'>
+            <div className={`back-button-container ${scrollDirection === 'up' ? 'show' : 'hide'}`}>
               <Button className='back-button' startIcon={<KeyboardArrowLeftIcon className='am-icon' />} onClick={backButtonClickHandler.bind(this)}>
                 Back
               </Button>
