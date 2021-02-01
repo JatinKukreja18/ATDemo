@@ -16,7 +16,7 @@
 
     .am-card-content {
       height: 500px;
-      overflow-y: auto;
+      overflow-y: hidden;
       background-color: rgba(0, 0, 0, 0.7);
       -webkit-tap-highlight-color: transparent;
 
@@ -30,7 +30,7 @@
 
         &:hover {
           // transform: scale(1.1); /* (110% zoom)*/
-          margin-left: 10px;
+          transform: translateX(10px);
           color: $custom-green;
         }
       }
@@ -39,7 +39,7 @@
         font-size: large;
         list-style: none; /* Remove default bullets */
         padding: 0;
-  
+        
         .list-item {
           cursor: pointer;
           margin: 0px 0 20px;
@@ -50,7 +50,11 @@
           width: 90%;
 
           &::before {
-            content: '\2192';  /* Add content: \2022 is the CSS Code/unicode for a bullet */
+            content:'';
+            background-image: url('../../../assets/bullet.svg');
+            background-size: 100%;
+            background-repeat: no-repeat;
+            // content: url('../../../assets/bullet.svg');  /* Add content: \2022 is the CSS Code/unicode for a bullet */
             // color: red; /* Change the color */
             // font-weight: bold; /* If you want it to be bold */
             // display: inline-block; /* Needed to add space between the bullet and the text */
@@ -58,17 +62,34 @@
             // margin-left: -1em; /* Also needed for space (tweak if needed) */
             // transform: scale(2);
             // vertical-align: super;
+            width: 20px;
+            height: 20px;
             margin-right: 10px;
             font-size: 40px;
             line-height: 0;
             position: relative;
             top: 3px;
+            flex: none;
+            color: #fff;
           }
 
           &:hover {
             // transform: scale(1.1); /* (110% zoom)*/
-            margin-left: 10px;
+            // margin-left: 10px;
+            transform: translateX(10px);
+
             color: $custom-green;
+            &::before{
+              background-image: url('../../../assets/bullet-color.svg');
+            }
+          }
+        }
+        @include mobile-small {
+          .list-item{
+            width: calc(100%);
+            &:hover{
+              transform: translateX(5px);
+            }
           }
         }
       }  

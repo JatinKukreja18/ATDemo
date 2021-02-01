@@ -31,7 +31,11 @@
             height: 100%;
           }  
         }
-
+        @include mobile{
+          .image-card{
+            height: 240px;
+          }
+        }
         .heading {
           font-size: 3em;
           font-family: ProximaNova-Bold;
@@ -43,7 +47,7 @@
         }
       }
     }
-
+    
     .second-section {
       width: 60%;
       margin: auto 0;
@@ -55,7 +59,7 @@
       .carousel-item-container {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        // justify-content: space-between;
         padding-left: 500px;
 
         .carousel-item {
@@ -405,4 +409,12 @@
       }
     }
   }
+  @include mobile-small {
+    .services-container{
+      .second-section {
+        padding: 0 20px;
+      }
+    }
+  }
+  
 }

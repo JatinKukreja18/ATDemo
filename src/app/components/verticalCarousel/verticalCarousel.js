@@ -20,32 +20,34 @@ export default class VerticalCarousel extends React.Component {
 		} else { // scroll up
 			newActiveId = activeID === 0 ? activeID : activeID - 1;
 		}
+		console.log(activeID);
 		if (newActiveId !== activeID) {
-			this.changeActive(newActiveId);
+			if (document)
+				this.changeActive(newActiveId);
 			const element = document.getElementById(`panel-${newActiveId}`);
-			this.animateSlides(direction)
+			// this.animateSlides(direction)
 		}
 	}
-	animateSlides = direction => {
-		if (direction > 0) {
-			document.querySelector(`#panel-0`).classList.add('up');
-			document.querySelector(`#panel-1`).classList.add('up');
-		} else if (direction < 0 && document.querySelector('.panel-item:last-of-type > div').scrollTop == 0) {
-			document.querySelector(`#panel-0`).classList.remove('up');
-			document.querySelector(`#panel-1`).classList.remove('up');
-		}
-	}
+	// animateSlides = direction => {
+	// 	if (direction > 0) {
+	// 		document.querySelector(`#panel-0`).classList.add('up');
+	// 		document.querySelector(`#panel-1`).classList.add('up');
+	// 	} else if (direction < 0 && document.querySelector('.panel-item:last-of-type > div').scrollTop == 0) {
+	// 		document.querySelector(`#panel-0`).classList.remove('up');
+	// 		document.querySelector(`#panel-1`).classList.remove('up');
+	// 	}
+	// }
 	changeActive(id) {
 		setTimeout(() => {
 			this.setState({
 				activeID: id
 			});
-		}, 500);
+		}, 0);
 	}
 
 	render() {
 		return (
-			<section className="wrapper">
+			<section className="wrapper" data-swipe-threshold="0">
 				<Selectors data={this.props.data} activeID={this.state.activeID} scrollThroughCarousel={this.scrollThroughCarousel} />
 				<Panel data={this.props.data} activeID={this.state.activeID} scrollThroughCarousel={this.scrollThroughCarousel} />
 			</section>
@@ -61,11 +63,28 @@ class Panel extends React.Component {
 		window.addEventListener(wheelEvent, this.scrollHandler);
 		window.addEventListener('scroll', this.scrollHandler);
 		window.addEventListener('keydown', this.keyDownHandler);
-	}
+		// document.querySelector('.screen2-container').addEventListener('scroll', this.sectionScrollHandler);
 
+		document.addEventListener('swiped-down', (e) => {
+			console.log('swipe' + e.detail.dir); // swipe direction
+			this.props.scrollThroughCarousel(-1);
+		});
+		document.addEventListener('swiped-up', (e) => {
+			console.log('swipe' + e.detail.dir); // swipe direction
+			this.props.scrollThroughCarousel(1);
+		});
+	}
+	sectionScrollHandler = (event) => {
+		console.log(document.querySelector('.screen2-container').scrollTop);
+		if (document.querySelector('.screen2-container').scrollTop < 4) {
+			this.props.scrollThroughCarousel(-1);
+		}
+	}
 	scrollHandler = (event) => {
 		// event.preventDefault();
-		this.props.scrollThroughCarousel(event.deltaY);
+		if (window.innerWidth > 767) {
+			this.props.scrollThroughCarousel(event.deltaY);
+		}
 	}
 
 	keyDownHandler = (e) => {
@@ -104,7 +123,7 @@ class Panel extends React.Component {
 							index = i + 1;
 						}
 						return (
-							<div key={i} className={'panel-item'} id={`panel-${item.id}`}>
+							<div key={i} className={`panel-item ${activeID === 1 ? 'up' : ''}`} id={`panel-${item.id}`}>
 								<ItemComponent id={item.id} changeActive={scrollThroughCarousel} className={`screen ${classes} ${activeClass}`} />
 							</div>
 						);
