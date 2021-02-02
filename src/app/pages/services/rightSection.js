@@ -62,11 +62,11 @@ class RightSectionComponent extends Component {
     // this.setState({
     //   detailsOpen: false
     // });
-    console.log(this.subId);
+    // console.log(this.subId);
     this.setState({
       fromAnimation: finalAnimationState,
     }, () => {
-      console.log(this.state.fromAnimation);
+      // console.log(this.state.fromAnimation);
       this.props.history.push('/services');
     })
   }
@@ -75,8 +75,8 @@ class RightSectionComponent extends Component {
     event.target.classList.add("hidden");
   }
   mobileSlideChange = (v) => {
-    console.log(v);
-    console.log(this.state.currentCard);
+    // console.log(v);
+    // console.log(this.state.currentCard);
     this.setState({
       currentCard: v,
       direction: this.state.currentCard < v ? DIRECTIONS.LEFT : DIRECTIONS.RIGHT
@@ -107,21 +107,21 @@ class RightSectionComponent extends Component {
     //   console.log(this.props);
     //   console.log(serviceId);
     // });
-    console.log(index);
+    // console.log(index);
     const rect = document.querySelector('#c-item-' + index).getBoundingClientRect();
     if (this.props.isMobile) {
       this.setState({
         fromAnimation: initialAnimationStateMobile(rect, document.querySelector('.services-container').scrollTop),
       }, () => {
-        console.log(document.querySelector('.services-container').scrollTop);
-        console.log(this.state.fromAnimation);
+        // console.log(document.querySelector('.services-container').scrollTop);
+        // console.log(this.state.fromAnimation);
         this.props.history.push(this.props.match.path + '/' + serviceId + '#' + subId);
       })
     } else {
       this.setState({
         fromAnimation: initialAnimationState(rect),
       }, () => {
-        console.log(this.state.fromAnimation);
+        // console.log(this.state.fromAnimation);
         this.props.history.push(this.props.match.path + '/' + serviceId + '#' + subId);
       })
     }
@@ -202,7 +202,7 @@ class RightSectionComponent extends Component {
     const { isMobile, location } = this.props;
     const { detailsOpen, serviceId, subId, fromAnimation, toAnimation, toAnimationMobile, currentCard } = this.state;
     const calculatedAnimation = { from: fromAnimation, to: isMobile ? toAnimationMobile : toAnimation }
-    console.log(calculatedAnimation);
+    // console.log(calculatedAnimation);
     return (
       <>
         {isMobile ? this.renderMobileView() : this.renderDesktopView()}

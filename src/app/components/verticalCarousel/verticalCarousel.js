@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './verticalCarousel.scss';
+import throttle from '../../utils/throttle';
 
 export default class VerticalCarousel extends React.Component {
 
@@ -20,7 +21,7 @@ export default class VerticalCarousel extends React.Component {
 		} else { // scroll up
 			newActiveId = activeID === 0 ? activeID : activeID - 1;
 		}
-		console.log(activeID);
+		// console.log(activeID);
 		if (newActiveId !== activeID) {
 			if (document)
 				this.changeActive(newActiveId);
@@ -59,23 +60,23 @@ class Panel extends React.Component {
 
 	componentDidMount() {
 		const wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
-		window.addEventListener('DOMMouseScroll', this.scrollHandler);
-		window.addEventListener(wheelEvent, this.scrollHandler);
-		window.addEventListener('scroll', this.scrollHandler);
+		// window.addEventListener('DOMMouseScroll', throttle(this.scrollHandler, 500));
+		window.addEventListener(wheelEvent, throttle(this.scrollHandler, 300));
+		window.addEventListener('scroll', throttle(this.scrollHandler, 300));
 		window.addEventListener('keydown', this.keyDownHandler);
 		// document.querySelector('.screen2-container').addEventListener('scroll', this.sectionScrollHandler);
 
 		document.addEventListener('swiped-down', (e) => {
-			console.log('swipe' + e.detail.dir); // swipe direction
+			// console.log('swipe' + e.detail.dir); // swipe direction
 			this.props.scrollThroughCarousel(-1);
 		});
 		document.addEventListener('swiped-up', (e) => {
-			console.log('swipe' + e.detail.dir); // swipe direction
+			// console.log('swipe' + e.detail.dir); // swipe direction
 			this.props.scrollThroughCarousel(1);
 		});
 	}
 	sectionScrollHandler = (event) => {
-		console.log(document.querySelector('.screen2-container').scrollTop);
+		// console.log(document.querySelector('.screen2-container').scrollTop);
 		if (document.querySelector('.screen2-container').scrollTop < 4) {
 			this.props.scrollThroughCarousel(-1);
 		}

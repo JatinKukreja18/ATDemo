@@ -86,7 +86,7 @@ export default class DesignEngineeringServiceComponent extends Component {
   }
 
   updateTitle = (highLightedEl) => {
-    console.log('here');
+    // console.log('here');
     const { service } = this.props;
     let title = highLightedEl && highLightedEl.getAttribute("data-title") ? highLightedEl.getAttribute("data-title") : service.displayText;
     this.setState({ title });
@@ -97,7 +97,7 @@ export default class DesignEngineeringServiceComponent extends Component {
     const offset = -50 - (window.innerHeight / 2);
     // This scroll spy will help us identify the scroll position and update the title accordingly
     subSectionIds = ['first-section-trigger', ...subSectionIds]
-    console.log(subSectionIds);
+    // console.log(subSectionIds);
     return (
       <Scrollspy items={subSectionIds} style={{ display: 'none' }} currentClassName='abc' rootEl={'#' + this.props.service.id + '-content'} onUpdate={this.updateTitle} offset={offset}>
         {
@@ -163,7 +163,7 @@ export default class DesignEngineeringServiceComponent extends Component {
   }
 
   componentWillUnmount() {
-    console.log(this.props.service.id);
+    // console.log(this.props.service.id);
     document.getElementById(this.props.service.id + '-content').removeEventListener('scroll', this.scrollEventHandler);
   }
 }

@@ -49,9 +49,9 @@ export default class Routes extends Component {
     });
   }
   changingRoute = (item) => {
-    console.log(item);
+    // console.log(item);
     if (window.sessionStorage.currentMenuItem > item.id) {
-      console.log('direction down');
+      // console.log('direction down');
       this.setState({
         transition: {
           from: {
@@ -67,7 +67,7 @@ export default class Routes extends Component {
         }
       })
     } else {
-      console.log('direction up');
+      // console.log('direction up');
       this.setState({
         transition: {
           from: {

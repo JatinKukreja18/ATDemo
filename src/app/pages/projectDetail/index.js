@@ -42,10 +42,10 @@ class ProjectDetailsIndexComponent extends Component {
     });
   }
   animationEnds = (props) => {
-    console.log(props);
+    // console.log(props);
     if (!this.state.reverseAnimation) {
       this.setState({ showPage: !this.state.showPage });
-      console.log(this.state.project.id);
+      // console.log(this.state.project.id);
       document.getElementById(this.state.project.id + '-content').addEventListener('scroll', throttle(this.scrollEventHandler, 500));
     } else {
       document.getElementById(this.state.project.id + '-content').removeEventListener('scroll');

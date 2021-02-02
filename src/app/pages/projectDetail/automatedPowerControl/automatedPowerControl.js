@@ -59,11 +59,26 @@ export default class AutomatedPowerControlComponent extends Component {
                   <span>(Note: this project was completed under a different DBA moniker) This project was very complex and required a special adherence to international guidelines and standards used to deploy products on a standard electric grid. We took the customer’s non-technical specifications and turned around with a fully functioning web-driven hardware device with perpetual monitoring and a litany of safety and security protocols designed specifically to address the customer’s concerns.</span>
                 </p>
                 <Image src={image} align={'center'} />
-                <Image src={image} align={'right'} />
-                <Image src={image} align={'left'} />
                 <p>
                   <span className='subtitle'>AM Tech’s Solution: </span>
                   <span>(Note: this project was completed under a different DBA moniker) This project was very complex and required a special adherence to international guidelines and standards used to deploy products on a standard electric grid. We took the customer’s non-technical specifications and turned around with a fully functioning web-driven hardware device with perpetual monitoring and a litany of safety and security protocols designed specifically to address the customer’s concerns.</span>
+                </p>
+                <Image src={image} align={'right'} />
+                <p>
+                  <span className='subtitle'>AM Tech’s Solution: </span>
+                  <span>(Note: this project was completed under a different DBA moniker) This project was very complex and required a special adherence to international guidelines and standards used to deploy products on a standard electric grid. We took the customer’s non-technical specifications and turned around with a fully functioning web-driven hardware device with perpetual monitoring and a litany of safety and security protocols designed specifically to address the customer’s concerns.</span>
+                </p>
+                {/* 
+                  uncomment the below div if you want seperation in text sections
+                */}
+                {/* <div style={{ 'clear': 'both' }}></div> */}
+                <Image src={image} align={'left'} />
+                <p>
+                  <span className='subtitle'>AM Tech’s Solution: </span>
+                  <span>(Note: this project was completed under a different DBA moniker) This project was very complex and required a special adherence to international guidelines and standards used to deploy products on a standard electric grid. We took the customer’s non-technical specifications and turned around with a fully functioning web-driven hardware device with perpetual monitoring and a litany of safety and security protocols designed specifically to address the customer’s concerns.
+
+                    Here is our <Link to={'/services'}>services</Link>
+                  </span>
                 </p>
               </div>
             </div>

@@ -1,19 +1,32 @@
 @import "../../../styles/mixins.scss";
 
 .content-image{
-    padding: 20px 0;
+    // padding: 20px 0;
     img{
-       max-width: 70%;
+       max-width: 100%;
     }   
     &.left{
-        text-align: left;
+        width: 70%;
+        float: left;
+        // height: 100px;
+        margin: 20px 20px 20px 0;
     }
     &.right{
-        text-align: right;
+        width: 70%;
+        float: right;
+        // height: 100px;
+        margin: 20px 0px 20px 20px;
     }
     &.center{
         text-align: center;
+        padding: 20px 0;
+        img{
+            max-width: 70%;
+        }
     }
+    &::after{content: "";
+        display: table;
+        clear: both;}
 }
 @include mobile{
     .content-image img {max-width: 100%;width: 100%;}

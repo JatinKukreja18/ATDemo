@@ -59,7 +59,7 @@ class ServiceDetailsIndexComponent extends Component {
     let rect;
     let t;
     if (this.props.isMobile) {
-      console.log(this.props.currentCard);
+      // console.log(this.props.currentCard);
       f = finalAnimationStateMobile();
       rect = document.querySelector('#c-item-' + this.props.currentCard).getBoundingClientRect();
       t = initialAnimationStateMobile(rect);
@@ -71,7 +71,7 @@ class ServiceDetailsIndexComponent extends Component {
     }
 
     this.setState({ showPage: !this.state.showPage, reverseAnimation: true, reversePosition: { from: f, to: t } }, () => {
-      console.log('backing');
+      // console.log('backing');
       setTimeout(() => {
 
         this.props.history.push('/services')
@@ -80,10 +80,10 @@ class ServiceDetailsIndexComponent extends Component {
 
   }
   animationEnds = (props) => {
-    console.log(props);
+    // console.log(props);
     if (!this.state.reverseAnimation) {
       this.setState({ showPage: !this.state.showPage });
-      console.log(this.state.service.id);
+      // console.log(this.state.service.id);
       document.getElementById(this.state.service.id + '-content').addEventListener('scroll', throttle(this.scrollEventHandler, 500));
     } else {
       document.getElementById(this.state.service.id + '-content').removeEventListener('scroll');
@@ -94,7 +94,7 @@ class ServiceDetailsIndexComponent extends Component {
     const { service, reverseAnimation, reversePosition, scrollDirection } = this.state;
     const { isMobile, style, location, animation } = this.props;
     const DetailComponent = service.detailsComponent;
-    console.log(animation);
+    // console.log(animation);
     const subId = location.hash.substring(1);
     if (animation) {
       return (
@@ -138,7 +138,7 @@ class ServiceDetailsIndexComponent extends Component {
     const { service, reverseAnimation, reversePosition, scrollDirection } = this.state;
     const { isMobile, style, location, animation } = this.props;
     const DetailComponent = service.detailsComponent;
-    console.log(animation);
+    // console.log(animation);
     const subId = location.hash.substring(1);
     if (animation) {
       return (

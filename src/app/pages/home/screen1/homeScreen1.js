@@ -15,14 +15,14 @@ export default class HomeScreen1Component extends Component {
     const conatinerWidth = .75 * window.innerWidth;
     if (e.pageX) {
       const offsetX = ((e.pageX - (.25 * window.innerWidth)) / (conatinerWidth)) * 100;
-      console.log(e.pageX - (.25 * window.innerWidth));
-      console.log(conatinerWidth);
-      console.log(offsetX + '%');
+      // console.log(e.pageX - (.25 * window.innerWidth));
+      // console.log(conatinerWidth);
+      // console.log(offsetX + '%');
       spotlight.style.backgroundImage = `radial-gradient(circle at ${offsetX}% ${e.pageY / spotlight.offsetHeight * 100}%, ${spotlightSize}`;
     }
     else if (e.touches[0].clientX) {
       if (lastTouchPoint < e.touches[0].clientX) {
-        console.log('load next');
+        // console.log('load next');
       }
       lastTouchPoint = e.touches[0].clientX
       // const offsetX = ((e.touches[0].clientX - (.25 * window.innerWidth)) / (conatinerWidth)) * 100;
