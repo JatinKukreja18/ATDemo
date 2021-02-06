@@ -80,7 +80,46 @@ export default class AutomatedPowerControlComponent extends Component {
                   <div className='image-container'>
                     <img alt="Power Monitoring Installed" src={InstalledImage} className='details-image' />
                   </div>
+
                 </p>
+                  Below is a test section for images with text
+                  <p>
+                  <Image src={InstalledImage} align="left" />
+                  <span>
+                    (Note: this project was completed under a different DBA moniker)
+                    This project was very complex and required a special adherence to international guidelines
+                    and standards used to deploy products on a standard electric grid.
+                  <br />
+                    <b>We took the customer’s non-technical specifications</b> and turned around with a
+                  fully functioning, web-driven hardware device with perpetual monitoring
+                  and a litany of safety and security protocols designed specifically to address the customer’s concerns.
+                  </span>
+                </p>
+                <p>
+                  <Image src={InstalledImage} align="center" />
+                  <span>
+                    (Note: this project was completed under a different DBA moniker)
+                    This project was very complex and required a special adherence to international guidelines
+                    and standards used to deploy products on a standard electric grid.
+                  <br />
+                    <b>We took the customer’s non-technical specifications</b> and turned around with a
+                  fully functioning, web-driven hardware device with perpetual monitoring
+                  and a litany of safety and security protocols designed specifically to address the customer’s concerns.
+                  </span>
+                </p>
+                <p>
+                  <Image src={InstalledImage} align="right" />
+                  <span>
+                    (Note: this project was completed under a different DBA moniker)
+                    This project was very complex and required a special adherence to international guidelines
+                    and standards used to deploy products on a standard electric grid.
+                  <br />
+                    <b>We took the customer’s non-technical specifications</b> and turned around with a
+                  fully functioning, web-driven hardware device with perpetual monitoring
+                  and a litany of safety and security protocols designed specifically to address the customer’s concerns.
+                  </span>
+                </p>
+                <Link to="/services">Go to services</Link>
               </div>
             </div>
           </Container>

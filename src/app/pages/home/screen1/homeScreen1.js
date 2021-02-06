@@ -11,7 +11,7 @@ export default class HomeScreen1Component extends Component {
 
   updateSpotlight = (e) => {
     const spotlight = document.querySelector('.screen1-backdrop');
-    let spotlightSize = 'transparent 100px, rgba(0, 0, 0, 0.5) 150px)';
+    let spotlightSize = 'transparent 100px, rgba(0, 0, 0, 0.7) 150px)';
     const conatinerWidth = .75 * window.innerWidth;
     if (e.pageX) {
       const offsetX = ((e.pageX - (.25 * window.innerWidth)) / (conatinerWidth)) * 100;
