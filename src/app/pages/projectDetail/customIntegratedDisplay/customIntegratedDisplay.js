@@ -8,8 +8,9 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import Header from "../../../components/header/header";
 import { DEFAULT, PROJECTS } from '../../../router/routes.const';
-import DetailsImage from '../../../../assets/compressed/breadboarding.jpg';
+import DetailsImage from '../../../../assets/compressed/customIntegratedDisplay.jpg';
 import ListIconImage from '../../../../assets/custom-tick.svg';
+import PcbImage from '../../../../assets/compressed/touchScreenDisplayPcb.jpg';
 
 import './customIntegratedDisplay.scss';
 
@@ -50,11 +51,35 @@ export default class CustomIntegratedDisplayComponent extends Component {
                 <span className='highlighted-text'>Customer Size: Medium</span>
                 <p>
                   <span className='subtitle'>Problem: </span>
-                  <span>The same clean room customer came again to report that their customers wanted a better way to interact and view system operations on their clean room units.</span>
+                  <br />
+                  <span>After building the clean room control system (CCS), our customer reported that their customers
+                        wanted a <b>better way to interact and view system operations</b> on their clean room units.
+                    <br />
+                        They wanted a <b>custom graphical user interface</b> (GUI) on a touch screen that could change and control the clean room unit.
+                  </span>
                 </p>
                 <p>
                   <span className='subtitle'>AM Tech’s Solution: </span>
-                  <span>We designed a detachable LCD touch screen, complete with custom graphics and menus designed to ensure the long-term operation of the monitoring systems.</span>
+                  <br />
+                  <span>
+                    We designed a detachable LCD touch screen,
+                    complete with custom graphics and menus designed
+                    to ensure the long-term operation of the monitoring systems.
+                    <br />
+                    The screens are compatible with multiple memory sources and the graphics
+                    are interchangeable and can be easily reloaded or modified at the customer's request.
+                    <br /><br />
+                    This solution made use of some open-source drivers coupled with several custom implementations.
+                    <br />
+                    One of the biggest challenges was respecting some of the requirements requiring extra long cables
+                    and transmitting high-speed data across these cables.
+                    <br />
+                    Nonetheless, this project was completed <b>on time and on budget.</b>
+                  </span>
+                  <br /><br />
+                  <div className='image-container'>
+                    <img alt="SCR PCB" src={PcbImage} className='details-image' />
+                  </div>
                 </p>
               </div>
             </div>

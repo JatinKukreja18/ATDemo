@@ -8,9 +8,9 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import Header from "../../../components/header/header";
 import { DEFAULT, PROJECTS } from '../../../router/routes.const';
-import DetailsImage from '../../../../assets/compressed/breadboarding.jpg';
+import DetailsImage from '../../../../assets/compressed/cleanRoomControl.jpg';
 import ListIconImage from '../../../../assets/custom-tick.svg';
-
+import PcbImage from '../../../../assets/compressed/cleanRoomControlBoard.jpg';
 import './cleanRoomControl.scss';
 
 export default class CleanRoomControlComponent extends Component {
@@ -50,14 +50,33 @@ export default class CleanRoomControlComponent extends Component {
                 <span className='highlighted-text'>Customer Size: Medium</span>
                 <p>
                   <span className='subtitle'>Problem: </span>
-                  <span>This customer came to AM Tech requesting a redesign of their clean room control system. The system had fallen out of compliance and was in need of some major upgrades.</span>
+                  <span>
+                    <br />
+                    Our customer came to AM Tech requesting a redesign of their clean room control system.
+                    The system had fallen out of compliance and was in need of some major upgrades.
+                    <br />
+                  </span>
                 </p>
                 <p>
                   <span className='subtitle'>AM Tech’s Solution: </span>
-                  <span>We reverse-engineered their existing board, made a new design that conformed to their system specs, architected an entire system including firmware and circuit board design, rolled out an initial order and stayed both on time and on budget.</span>
+                  <span>
+                    <br />
+                    We reverse-engineered their existing board and made a new design that conformed to their system specs.
+                    We architected the entire system including firmware and circuit board design, prototyped,
+                    and delivered an initial order while staying both <b><i>on time and on budget.</i></b>
+                  </span>
                 </p>
                 <p>
-                  In the following year after adopting AM Tech’s solution, the company’s sales doubled.
+                  <b>Our customer's sales doubled </b> in the following year after adopting AM Tech’s solution.
+                  <br /><br />
+                  This <b>product continues to be sold</b> and AM Tech maintains and provides upgrades when needed.
+                  <br /><br />
+                  Demand has increased, as this solution has been used widely by pharmaceutical companies and virus research centers
+                  worldwide during the COVID-19 pandemic.
+                  <br /><br />
+                  <div className='image-container'>
+                    <img alt="CCS PCB" src={PcbImage} className='details-image' />
+                  </div>
                 </p>
               </div>
             </div>

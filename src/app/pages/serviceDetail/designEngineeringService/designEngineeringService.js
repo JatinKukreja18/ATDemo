@@ -12,7 +12,7 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import Header from "../../../components/header/header";
 import { DEFAULT, SERVICES } from '../../../router/routes.const';
 
-import BreadboardingImage from '../../../../assets/compressed/breadboarding.jpg';
+import BreadboardingImage from '../../../../assets/compressed/designEngineeringService.jpg';
 import throttle from '../../../utils/throttle';
 import './designEngineeringService.scss';
 

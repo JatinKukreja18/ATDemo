@@ -47,22 +47,22 @@ export default class HomeScreen1Component extends Component {
             to={{ opacity: 1 }}>
             {props =>
             (<div style={props} className='screen1-content'>
-              <div className='screen1-header'>AM Tech LLC</div>
+              <div className='screen1-header'>Welcome to AM Tech!</div>
               <div className='screen1-subheader'>
-                Custom Electronics Design
-          </div>
-              <div className='screen1-subheader'>
-                Solutions for growing your business
-          </div>
-              <div className='screen1-subheader'>
-                Improve your Products
-          </div>
+                Solutions to grow your business
+              <br />
+              with customs electronics Design
+              </div>
               <p className='subtext'>
-                Does your company have a great design that needs automation? Do you have
-                an amazing idea for a brand-new technology? We want to help you build your
-                product. We do everything from hardware design, firmware implementation,
-                software design and everything in between.
-          </p>
+                Welcome to AM Tech!
+              <br />
+              We build great electronic products from concept
+              <br />
+              to implementation. We specialize in embedded systems,
+              <br />
+              IoT connections and automation systems.
+              <br />
+              </p>
             </div>)
             }
           </Spring>

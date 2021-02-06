@@ -8,7 +8,8 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import Header from "../../../components/header/header";
 import { DEFAULT, PROJECTS } from '../../../router/routes.const';
-import DetailsImage from '../../../../assets/compressed/breadboarding.jpg';
+import DetailsImage from '../../../../assets/compressed/midiControlledReactiveLighting.jpg';
+import MidiControllerLiveImage from '../../../../assets/compressed/midiControllerWorking.jpg';
 import ListIconImage from '../../../../assets/custom-tick.svg';
 
 import './midiControlledReactiveLighting.scss';
@@ -47,14 +48,28 @@ export default class MidiControlledReactiveLightingComponent extends Component {
                 <span className='list-icon-container'>
                   <img alt='list' src={ListIconImage} className='list-icon' />
                 </span>
-                <span className='highlighted-text'>Customer Size: Hobbyist</span>
+                <span className='highlighted-text'>Customer: Hobbyist</span>
                 <p>
                   <span className='subtitle'>Request: </span>
-                  <span>We received a request to build a prototype of a portable reactive stage-lighting unit that could connect to electronic instruments and deliver a dazzling stage performance based on the musician’s playing.</span>
+                  <br />
+                  <span>
+                    We received a request to build a proof of concept of a
+                    portable reactive stage-lighting unit that can connect to
+                    electronic instruments and deliver a dazzling stage
+                    performance based on the musician’s playing.</span>
                 </p>
                 <p>
                   <span className='subtitle'>AM Tech’s Solution: </span>
-                  <span>We implemented a custom schematic, firmware and adapted it to communicate on the very popular MIDI protocol. This small project showed the versatility of AM Tech’s expertise and the initial design and prototyping phase took just 2 weeks!</span>
+                  <br />
+                  <span>
+                    We implemented a <b>custom hardware design and firmware</b> and adapted it to communicate on the very popular MIDI protocol.
+                    <br />
+                    This small project showed the versatility of AM Tech’s expertise and the <b>initial design and prototyping phase took just 2 weeks!</b>
+                    <br /><br />
+                  </span>
+                  <div className='image-container'>
+                    <img alt="Midi Controller Live" src={MidiControllerLiveImage} className='details-image' />
+                  </div>
                 </p>
               </div>
             </div>

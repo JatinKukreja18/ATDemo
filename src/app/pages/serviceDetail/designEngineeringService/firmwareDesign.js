@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import ListIconImage from '../../../../assets/custom-tick.svg'; 
+import ListIconImage from '../../../../assets/custom-tick.svg';
 
 export default class HardwareDesignComponent extends Component {
   render() {
@@ -13,19 +13,24 @@ export default class HardwareDesignComponent extends Component {
             <h3>Embedded Systems</h3>
             <div className='des-text'>
               <div className='list-icon-container'>
-                <img alt='list' src={ListIconImage} className='list-icon'/>
+                <img alt='list' src={ListIconImage} className='list-icon' />
               </div>
               <div>
-                <span className='highlighted-text'>Here’s what we do to make sure you run the platform suited to your needs: </span>
-                <span>We are experts at small microcontrollers, raspberry pi, and other multicore processors or systems on chip – we will help you choose the best option for your product</span>
+                <span className='highlighted-text'>
+                  Here’s what we do to make sure you run the platform suited to your needs:
+                </span>
+                <span>
+                  We are experts at small microcontrollers, raspberry pi, and other multicore processors or systems on chip –
+                  we will help you choose the best option for your product
+                </span>
               </div>
-            </div>            
+            </div>
           </div>
           <div className='des-text-container'>
             <h3>Measurement and Sensors</h3>
             <div className='des-text'>
               <div className='list-icon-container'>
-                <img alt='list' src={ListIconImage} className='list-icon'/>
+                <img alt='list' src={ListIconImage} className='list-icon' />
               </div>
               <div>
                 <span>We have a lot of experience with many kinds of sensors analog and digital as well as the types of data they produce.</span>
@@ -36,7 +41,7 @@ export default class HardwareDesignComponent extends Component {
             <h3>Firmware Drivers</h3>
             <div className='des-text'>
               <div className='list-icon-container'>
-                <img alt='list' src={ListIconImage} className='list-icon'/>
+                <img alt='list' src={ListIconImage} className='list-icon' />
               </div>
               <div>
                 <span className='highlighted-text'>Here’s our commitment: </span>
@@ -48,11 +53,14 @@ export default class HardwareDesignComponent extends Component {
             <h3>Wireless communication</h3>
             <div className='des-text'>
               <div className='list-icon-container'>
-                <img alt='list' src={ListIconImage} className='list-icon'/>
+                <img alt='list' src={ListIconImage} className='list-icon' />
               </div>
               <div>
                 <span className='highlighted-text'>Here’s how we can help: </span>
                 <span>We’re versed in mesh networks, Xbee/Zigbee, Bluetooth and Wifi – today’s industry standards.</span>
+                {/* <div className='image-container'>
+                  <img alt="Wireless" src={WirelessImage} className='details-image-small' width="301" height="274" />
+                </div> */}
               </div>
             </div>
           </div>
@@ -60,7 +68,7 @@ export default class HardwareDesignComponent extends Component {
             <h3>Battery or low-power design</h3>
             <div className='des-text'>
               <div className='list-icon-container'>
-                <img alt='list' src={ListIconImage} className='list-icon'/>
+                <img alt='list' src={ListIconImage} className='list-icon' />
               </div>
               <div>
                 <span className='highlighted-text'>Here’s how we think: </span>
@@ -72,11 +80,11 @@ export default class HardwareDesignComponent extends Component {
             <h3>Unit Testing</h3>
             <div className='des-text'>
               <div className='list-icon-container'>
-                <img alt='list' src={ListIconImage} className='list-icon'/>
+                <img alt='list' src={ListIconImage} className='list-icon' />
               </div>
               <div>
                 <span className='highlighted-text'>Here’s what’s important: </span>
-                <span>Without a test system, you cannot guarantee the reliability of your product. We can develop in-depth testing environments to prevent all of those corner cases</span>
+                <span>Without a test system, you cannot guarantee the reliability of your product. We develop in-depth testing environments to prevent all of those corner cases</span>
               </div>
             </div>
           </div>
@@ -84,7 +92,7 @@ export default class HardwareDesignComponent extends Component {
             <h3>Programming Environment</h3>
             <div className='des-text'>
               <div className='list-icon-container'>
-                <img alt='list' src={ListIconImage} className='list-icon'/>
+                <img alt='list' src={ListIconImage} className='list-icon' />
               </div>
               <div>
                 <span className='highlighted-text'>Choose your favorite IDE: </span>
@@ -94,7 +102,7 @@ export default class HardwareDesignComponent extends Component {
           </div>
 
         </div>
-      );  
+      );
     }
 
     return null;

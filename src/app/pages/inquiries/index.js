@@ -75,7 +75,7 @@ export default class InquiriesComponent extends Component {
   renderDesktopView = () => {
     return (
       <>
-        <Header title='Inquiries' breadcrumbs={this.getBreadcrumbs()} />
+        <Header title='Contact Us' breadcrumbs={this.getBreadcrumbs()} />
         <Paper elevation={5} className='inquiries-paper'>
           <div className='contact-us-section'>
             {this.renderForm()}

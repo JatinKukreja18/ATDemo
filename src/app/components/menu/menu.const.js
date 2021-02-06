@@ -3,7 +3,7 @@ import MemoryIcon from '@material-ui/icons/Memory';
 import SettingsIcon from '@material-ui/icons/Settings';
 import PhoneCallbackIcon from '@material-ui/icons/PhoneCallback';
 
-import {DEFAULT, SERVICES, PROJECTS, INQUIRY} from '../../router/routes.const';
+import { DEFAULT, SERVICES, PROJECTS, INQUIRY } from '../../router/routes.const';
 
 export const MENU_ITEMS = [
   {
@@ -29,7 +29,7 @@ export const MENU_ITEMS = [
   },
   {
     id: 4,
-    text: 'INQUIRIES',
+    text: 'CONTACT US',
     icon: PhoneCallbackIcon,
     path: INQUIRY,
     classes: ''

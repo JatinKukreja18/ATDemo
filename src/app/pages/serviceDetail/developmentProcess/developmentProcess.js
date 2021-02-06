@@ -13,7 +13,7 @@ import { DEFAULT, SERVICES } from '../../../router/routes.const';
 import { Table, Thead as TableHead, Tbody as TableBody, Tr as TableRow, Th as TableHeadCell, Td as TableCell } from 'react-super-responsive-table';
 import 'react-super-responsive-table/dist/SuperResponsiveTableStyle.css';
 
-import DetailsImage from '../../../../assets/compressed/breadboarding.jpg';
+import DetailsImage from '../../../../assets/compressed/developmentProcess.gif';
 import ListIconImage from '../../../../assets/custom-tick.svg';
 import './developmentProcess.scss';
 
@@ -63,8 +63,8 @@ export default class DevelopmentProcessServiceComponent extends Component {
                   <img alt='list' src={ListIconImage} className='list-icon' />
                 </div>
                 <div className='dp-title-text'>
-                  <span className="highlighted-text">We work with our customer to reach </span>
-                  <span className="text">the best possible solution. We use a proven engineering model and can jump in at any phase, depending on where you need help.</span>
+                  <span className='highlighted-text'>We work with our customers to reach </span>
+                  <span className='text'>the best possible solution. We use a proven engineering model and can jump in at any phase, depending on where you need help.</span>
                 </div>
               </div>
               <div className='dp-table-container'>

@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import Header from "../../../components/header/header";
 import { DEFAULT, SERVICES } from '../../../router/routes.const';
-import DetailsImage from '../../../../assets/compressed/breadboarding.jpg';
+import DetailsImage from '../../../../assets/compressed/manufacturing1.jpg';
 import ListIconImage from '../../../../assets/custom-tick.svg';
 
 import './manufacturingServices.scss';

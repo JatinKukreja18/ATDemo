@@ -9,7 +9,10 @@ import IndustrialSolutionsComponent from '../serviceDetail/industrialSolutions/i
 import ManufacturingServicesComponent from '../serviceDetail/manufacturingServices/manufacturingServices';
 import BackgroundImage from '../../../assets/compressed/amtech-operations.jpg';
 import { SERVICES } from "../../router/routes.const";
-
+import desImage from '../../../assets/compressed/designEngineeringService.jpg';
+import devImage from '../../../assets/compressed/amtech-operations.jpg';
+import indImage from '../../../assets/compressed/industrialSolutions.jpg';
+import manImage from '../../../assets/compressed/manufacturing1.jpg';
 // Note:- The id and the end url in the link should have the same text
 // All the fields given in the JSON object are mandatory
 
@@ -17,7 +20,7 @@ export const SERVICE_LIST = [
   {
     id: 'design-engineering-services',
     displayText: 'Design Engineering Services',
-    backgroundImage: BackgroundImage,
+    backgroundImage: desImage,
     link: `${SERVICES}/design-engineering-services`,
     detailsComponent: DesignEngineeringServicesComponent,
     subList: [
@@ -56,7 +59,7 @@ export const SERVICE_LIST = [
   {
     id: 'development-process',
     displayText: 'Development Process',
-    backgroundImage: BackgroundImage,
+    backgroundImage: devImage,
     link: `${SERVICES}/development-process`,
     detailsComponent: DevelopmentProcessComponent,
     subList: [
@@ -80,7 +83,7 @@ export const SERVICE_LIST = [
   {
     id: 'industrial-solutions',
     displayText: 'Industrial Solutions',
-    backgroundImage: BackgroundImage,
+    backgroundImage: indImage,
     link: `${SERVICES}/industrial-solutions`,
     detailsComponent: IndustrialSolutionsComponent,
     subList: [
@@ -109,7 +112,7 @@ export const SERVICE_LIST = [
   {
     id: 'manufacturing-services',
     displayText: 'Manufacturing Services',
-    backgroundImage: BackgroundImage,
+    backgroundImage: manImage,
     link: `${SERVICES}/manufacturing-services`,
     detailsComponent: ManufacturingServicesComponent,
     subList: [

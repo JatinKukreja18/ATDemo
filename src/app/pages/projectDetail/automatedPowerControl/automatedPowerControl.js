@@ -9,8 +9,9 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import Header from "../../../components/header/header";
 import Image from "../../../components/Image";
 import { DEFAULT, PROJECTS } from '../../../router/routes.const';
-import DetailsImage from '../../../../assets/compressed/breadboarding.jpg';
+import DetailsImage from '../../../../assets/compressed/automatedPowerControl.jpg';
 import ListIconImage from '../../../../assets/custom-tick.svg';
+import InstalledImage from '../../../../assets/compressed/powerMonitoringInstalled.jpg';
 import image from '../../../../assets/compressed/blue-chip.jpg';
 import './automatedPowerControl.scss';
 
@@ -52,33 +53,33 @@ export default class AutomatedPowerControlComponent extends Component {
                 <span className='highlighted-text'>Customer Size: Large</span>
                 <p>
                   <span className='subtitle'>Problem: </span>
-                  <span>This customer was located in a world region with extreme energy theft. They tasked us with designing a solution for monitoring, metering and controlling certain sectors of their electric grid, including implementing a payment option.</span>
-                </p>
-                <p>
-                  <span className='subtitle'>AM Tech’s Solution: </span>
-                  <span>(Note: this project was completed under a different DBA moniker) This project was very complex and required a special adherence to international guidelines and standards used to deploy products on a standard electric grid. We took the customer’s non-technical specifications and turned around with a fully functioning web-driven hardware device with perpetual monitoring and a litany of safety and security protocols designed specifically to address the customer’s concerns.</span>
-                </p>
-                <Image src={image} align={'center'} />
-                <p>
-                  <span className='subtitle'>AM Tech’s Solution: </span>
-                  <span>(Note: this project was completed under a different DBA moniker) This project was very complex and required a special adherence to international guidelines and standards used to deploy products on a standard electric grid. We took the customer’s non-technical specifications and turned around with a fully functioning web-driven hardware device with perpetual monitoring and a litany of safety and security protocols designed specifically to address the customer’s concerns.</span>
-                </p>
-                <Image src={image} align={'right'} />
-                <p>
-                  <span className='subtitle'>AM Tech’s Solution: </span>
-                  <span>(Note: this project was completed under a different DBA moniker) This project was very complex and required a special adherence to international guidelines and standards used to deploy products on a standard electric grid. We took the customer’s non-technical specifications and turned around with a fully functioning web-driven hardware device with perpetual monitoring and a litany of safety and security protocols designed specifically to address the customer’s concerns.</span>
-                </p>
-                {/* 
-                  uncomment the below div if you want seperation in text sections
-                */}
-                {/* <div style={{ 'clear': 'both' }}></div> */}
-                <Image src={image} align={'left'} />
-                <p>
-                  <span className='subtitle'>AM Tech’s Solution: </span>
-                  <span>(Note: this project was completed under a different DBA moniker) This project was very complex and required a special adherence to international guidelines and standards used to deploy products on a standard electric grid. We took the customer’s non-technical specifications and turned around with a fully functioning web-driven hardware device with perpetual monitoring and a litany of safety and security protocols designed specifically to address the customer’s concerns.
-
-                    Here is our <Link to={'/services'}>services</Link>
+                  <br />
+                  <span>
+                    This customer is located in a world region with extremely high rates of energy theft.
+                    They tasked us with designing a solution for monitoring, metering and controlling
+                    certain sectors of their electric grid, including implementing a payment option.
+                    <br />
+                    Along with these requirements, we had to be able to detect and pinpoint locations where
+                    electricity theft was occuring and control zones and sectors in order to maximize energy
+                    efficiency during periods when the supply was lower than the demand.
                   </span>
+                </p>
+                <p>
+                  <span className='subtitle'>AM Tech’s Solution: </span>
+                  <br />
+                  <span>
+                    (Note: this project was completed under a different DBA moniker)
+                    This project was very complex and required a special adherence to international guidelines
+                    and standards used to deploy products on a standard electric grid.
+                  <br />
+                    <b>We took the customer’s non-technical specifications</b> and turned around with a
+                  fully functioning, web-driven hardware device with perpetual monitoring
+                  and a litany of safety and security protocols designed specifically to address the customer’s concerns.
+                  </span>
+                  <br /><br />
+                  <div className='image-container'>
+                    <img alt="Power Monitoring Installed" src={InstalledImage} className='details-image' />
+                  </div>
                 </p>
               </div>
             </div>

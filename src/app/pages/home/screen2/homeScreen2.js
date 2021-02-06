@@ -20,7 +20,11 @@ export default class HomeScreen2Component extends Component {
               </div>
               <div className='text'>
                 AM Tech was founded in 2017 by Andrew March.
-                We are a tight-knit team of engineers with expertise ranging from hardware, to firmware, to software design.
+                We are a great team of engineers with expertise ranging from hardware, to firmware, to software design to product management.
+                AM Tech develops and ships turnkey solutions for your products.
+                <br /><br />
+                AM Tech ships thousands of assembled circuit boards from our own design every year and can also white-label and
+                customize or build-to-print any schematic you might have.
               </div>
             </div>
           </div>
@@ -43,11 +47,11 @@ export default class HomeScreen2Component extends Component {
               <div className='text'>
                 <div className="list-item">
                   <img src={BulletIcon} alt='bullet' className='bullet-img' />
-                  <span className='list-item-text'>Build products that people will use and will improve lives</span>
+                  <span className='list-item-text'>We will build products that serve our customers, improve their business and make life easier for them</span>
                 </div>
                 <div className="list-item">
                   <img src={BulletIcon} alt='bullet' className='bullet-img' />
-                  <span className='list-item-text'>Bring success to any organization that we work with</span>
+                  <span className='list-item-text'>We will strive to exceed the expectations of every organization that we work with</span>
                 </div>
               </div>
             </div>

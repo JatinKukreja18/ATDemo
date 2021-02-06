@@ -4,26 +4,31 @@ import CustomIntegratedDisplayComponent from '../projectDetail/customIntegratedD
 import MidiControlledReactiveLightingComponent from '../projectDetail/midiControlledReactiveLighting/midiControlledReactiveLighting';
 import BackgroundImage from '../../../assets/compressed/amtech-operations.jpg';
 import { PROJECTS } from "../../router/routes.const";
+import ccsImage from '../../../assets/compressed/cleanRoomControlBoard.jpg';
+import scrImage from '../../../assets/compressed/amtech-operations.jpg';
+import pwrImage from '../../../assets/compressed/automatedPowerControl.jpg';
+import midiImage from '../../../assets/compressed/midiControllerWorking.jpg';
 
 // Note:- The id and the end url in the link should have the same text
 // All the fields given in the JSON object are mandatory
+
 
 export const PROJECT_LIST = [
   {
     id: 'clean-room-control',
     displayText: 'Clean Room Control and Monitoring System',
-    backgroundImage: BackgroundImage,
+    backgroundImage: ccsImage,
     link: `${PROJECTS}/clean-room-control`,
     detailsComponent: CleanRoomControlComponent,
     subList: [
       {
         id: 'automated-airspeed-control',
-        displayText: 'Automated airspeed control',
+        displayText: 'Automated air speed control',
         link: `${PROJECTS}/clean-room-control`
       },
       {
         id: 'filtration-monitoring',
-        displayText: 'Filtration monitoring',
+        displayText: 'Air filtration monitoring',
         link: `${PROJECTS}/clean-room-control`
       },
       {
@@ -36,7 +41,7 @@ export const PROJECT_LIST = [
   {
     id: 'custom-integrated-display',
     displayText: 'Custom Integrated Display',
-    backgroundImage: BackgroundImage,
+    backgroundImage: scrImage,
     link: `${PROJECTS}/custom-integrated-display`,
     detailsComponent: CustomIntegratedDisplayComponent,
     subList: [
@@ -55,7 +60,7 @@ export const PROJECT_LIST = [
   {
     id: 'automated-power-control',
     displayText: 'Automated Power Control and Monitoring',
-    backgroundImage: BackgroundImage,
+    backgroundImage: pwrImage,
     link: `${PROJECTS}/automated-power-control`,
     detailsComponent: AutomatedPowerControlComponent,
     subList: [
@@ -71,7 +76,7 @@ export const PROJECT_LIST = [
       },
       {
         id: 'ul-compliance',
-        displayText: 'UL Compliance',
+        displayText: 'Regulatory Compliance',
         link: `${PROJECTS}/automated-power-control`
       }
     ]
@@ -79,13 +84,13 @@ export const PROJECT_LIST = [
   {
     id: 'midi-controlled-reactive-lighting',
     displayText: 'PROTOTYPE: MIDI-Controlled Reactive Lighting',
-    backgroundImage: BackgroundImage,
+    backgroundImage: midiImage,
     link: `${PROJECTS}/midi-controlled-reactive-lighting`,
     detailsComponent: MidiControlledReactiveLightingComponent,
     subList: [
       {
         id: 'fun-concept',
-        displayText: 'Fun concept design project',
+        displayText: 'Proof of concept design project',
         link: `${PROJECTS}/midi-controlled-reactive-lighting`
       },
       {
@@ -93,11 +98,11 @@ export const PROJECT_LIST = [
         displayText: 'Interactive stage performance lighting',
         link: `${PROJECTS}/midi-controlled-reactive-lighting`
       },
-      {
-        id: 'concerts',
-        displayText: 'Makes exciting concerts',
-        link: `${PROJECTS}/midi-controlled-reactive-lighting`
-      }
+      // {
+      //   id: 'concerts',
+      //   displayText: 'Makes exciting concerts',
+      //   link: `${PROJECTS}/midi-controlled-reactive-lighting`
+      // }
     ]
   }
 ];

@@ -9,7 +9,7 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import Header from "../../../components/header/header";
 import { DEFAULT, SERVICES } from '../../../router/routes.const';
 
-import DetailsImage from '../../../../assets/compressed/breadboarding.jpg';
+import DetailsImage from '../../../../assets/compressed/industrialSolutions.jpg';
 import ListIconImage from '../../../../assets/custom-tick.svg';
 
 import './industrialSolutions.scss';
