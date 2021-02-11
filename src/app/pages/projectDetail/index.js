@@ -12,6 +12,10 @@ import throttle from '../../utils/throttle';
 
 let lastScrollPos = 0
 
+
+const AnimationDuration = 400;
+const ReverseAnimationDuration = 300;
+
 class ProjectDetailsIndexComponent extends Component {
 
   state = {
@@ -48,7 +52,9 @@ class ProjectDetailsIndexComponent extends Component {
       // console.log(this.state.project.id);
       document.getElementById(this.state.project.id + '-content').addEventListener('scroll', throttle(this.scrollEventHandler, 500));
     } else {
-      document.getElementById(this.state.project.id + '-content').removeEventListener('scroll');
+      if (document.getElementById(this.state.project.id + '-content')) {
+        document.getElementById(this.state.project.id + '-content').removeEventListener('scroll');
+      }
     }
   }
   scrollEventHandler = (event) => {
@@ -82,9 +88,12 @@ class ProjectDetailsIndexComponent extends Component {
     this.setState({ showPage: !this.state.showPage, reverseAnimation: true, reversePosition: { from: f, to: t } }, () => {
 
       setTimeout(() => {
-
-        this.props.history.push('/projects')
-      }, 300);
+        if (window.sessionStorage.getItem('navigated')) {
+          this.props.history.goBack();
+        } else {
+          this.props.history.push('/projects')
+        }
+      }, ReverseAnimationDuration);
     })
 
   }
@@ -100,7 +109,7 @@ class ProjectDetailsIndexComponent extends Component {
           {this.state.showPage ?
             <Spring
               from={{ opacity: '0' }}
-              to={{ opacity: '1' }} config={{ duration: 1000 }}>
+              to={{ opacity: '1' }} config={{ duration: AnimationDuration }}>
               {props =>
                 <div className=' am-modal-page' id={project.id + '-content'}>
                   <div className='content' style={{ opacity: props.opacity, height: 'auto' }}>
@@ -111,7 +120,7 @@ class ProjectDetailsIndexComponent extends Component {
             :
             <Spring
               from={reverseAnimation ? reversePosition.from : animation?.from}
-              to={reverseAnimation ? reversePosition.to : animation?.to} config={reverseAnimation ? { duration: 300 } : { duration: 500 }}
+              to={reverseAnimation ? reversePosition.to : animation?.to} config={reverseAnimation ? { duration: ReverseAnimationDuration } : { duration: AnimationDuration }}
               onRest={this.animationEnds}>
               {props =>
                 <div style={{
@@ -150,7 +159,7 @@ class ProjectDetailsIndexComponent extends Component {
           {this.state.showPage ?
             <Spring
               from={{ opacity: '0' }}
-              to={{ opacity: '1' }} config={{ duration: 1000 }}>
+              to={{ opacity: '1' }} config={{ duration: AnimationDuration }}>
               {props =>
                 <div className=' am-modal-page' id={project.id + '-content'}>
                   <div className='content' style={{ opacity: props.opacity, height: 'auto' }}>
@@ -161,7 +170,7 @@ class ProjectDetailsIndexComponent extends Component {
             :
             <Spring
               from={reverseAnimation ? reversePosition.from : animation?.from}
-              to={reverseAnimation ? reversePosition.to : animation?.to} config={reverseAnimation ? { duration: 300 } : { duration: 500 }}
+              to={reverseAnimation ? reversePosition.to : animation?.to} config={reverseAnimation ? { duration: ReverseAnimationDuration } : { duration: AnimationDuration }}
               onRest={this.animationEnds}>
               {props =>
                 <div style={{

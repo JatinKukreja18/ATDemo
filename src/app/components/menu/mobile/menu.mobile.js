@@ -24,7 +24,12 @@ class MobileMenuComponent extends BaseComponent {
       menuOpen: !this.state.menuOpen
     });
   }
-
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      console.log('has nagivated');
+      window.sessionStorage.setItem('navigated', true)
+    }
+  }
   render() {
 
     const { menuOpen, selected } = this.state;

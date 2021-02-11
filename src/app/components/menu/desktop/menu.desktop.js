@@ -9,20 +9,30 @@ import SocialMediaComponent from '../../socialMedia/socialMedia';
 import CopyrightComponent from '../../copyright/copyright';
 import Logo from '../../../../assets/logo.svg';
 
-import { withRouter } from "react-router-dom";
+import { withRouter, matchPath } from "react-router-dom";
 import { MENU_ITEMS } from '../menu.const';
 
 import '../menu.scss';
 
 class DesktopMenuComponent extends BaseMenuComponent {
-
+  componentDidUpdate(prevProps) {
+    if (this.props.location !== prevProps.location) {
+      console.log('has nagivated');
+      window.sessionStorage.setItem('navigated', true)
+    }
+  }
   renderMenuList = () => {
     const { selected } = this.state;
 
     return MENU_ITEMS.map((menuItem, index) => {
       let Icon = menuItem.icon;
+      const matchedPath = matchPath(this.props.location.pathname, {
+        path: menuItem.path,
+        exact: false,
+        strict: false
+      })
       return (
-        <ListItem button key={menuItem.id} className='menu-list-item' selected={selected === menuItem.id} onClick={this.setSelectedMenu.bind(this, menuItem)}>
+        <ListItem button key={menuItem.id} className='menu-list-item' selected={matchedPath} onClick={this.setSelectedMenu.bind(this, menuItem)}>
           <ListItemIcon className='menu-list-item-icon'><Icon /></ListItemIcon>
           <ListItemText primary={menuItem.text} className='menu-list-item-text' />
         </ListItem>

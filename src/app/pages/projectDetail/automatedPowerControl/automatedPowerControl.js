@@ -84,7 +84,7 @@ export default class AutomatedPowerControlComponent extends Component {
                 </p>
                   Below is a test section for images with text
                   <p>
-                  <Image src={InstalledImage} align="left" />
+                  <Image width="500px" height="400px" src={InstalledImage} align="left" />
                   <span>
                     (Note: this project was completed under a different DBA moniker)
                     This project was very complex and required a special adherence to international guidelines
@@ -96,7 +96,7 @@ export default class AutomatedPowerControlComponent extends Component {
                   </span>
                 </p>
                 <p>
-                  <Image src={InstalledImage} align="center" />
+                  <Image src={InstalledImage} width='50%' align="center" />
                   <span>
                     (Note: this project was completed under a different DBA moniker)
                     This project was very complex and required a special adherence to international guidelines
@@ -108,7 +108,7 @@ export default class AutomatedPowerControlComponent extends Component {
                   </span>
                 </p>
                 <p>
-                  <Image src={InstalledImage} align="right" />
+                  <Image src={InstalledImage} width='700px' align="right" />
                   <span>
                     (Note: this project was completed under a different DBA moniker)
                     This project was very complex and required a special adherence to international guidelines
@@ -119,7 +119,7 @@ export default class AutomatedPowerControlComponent extends Component {
                   and a litany of safety and security protocols designed specifically to address the customer’s concerns.
                   </span>
                 </p>
-                <Link to="/services">Go to services</Link>
+                <Link to="/services/design-engineering-services#firmware-design">Go to services</Link>
               </div>
             </div>
           </Container>

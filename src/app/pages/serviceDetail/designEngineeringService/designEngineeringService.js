@@ -164,7 +164,9 @@ export default class DesignEngineeringServiceComponent extends Component {
 
   componentWillUnmount() {
     // console.log(this.props.service.id);
-    document.getElementById(this.props.service.id + '-content').removeEventListener('scroll', this.scrollEventHandler);
+    if (document.getElementById(this.props.service.id + '-content')) {
+      document.getElementById(this.props.service.id + '-content').removeEventListener('scroll', this.scrollEventHandler);
+    }
   }
 }
 

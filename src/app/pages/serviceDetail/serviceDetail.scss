@@ -57,7 +57,9 @@
         align-self: center;
         margin-top: 55px;
         .details-image {
-          width: 75%;
+          max-height: 80vh;
+          max-width: 75%;
+          width: auto;
           display: block;
           margin: 0 auto 30px;
           border-radius: 10px;
